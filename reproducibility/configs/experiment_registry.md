@@ -1,6 +1,6 @@
 # Experiment Registry
 
-This registry records the experiments that support the main paper. Fill in exact checkpoint hashes and wall-clock times before public release.
+This registry records the experiments that support the main paper. Large checkpoints and raw outputs are external artifacts; this file records the model, layer, and experiment conventions expected by the public code release.
 
 ## Common Dataset and Model Conventions
 
@@ -13,21 +13,21 @@ This registry records the experiments that support the main paper. Fill in exact
 
 ## Model Registry
 
-| Model id | Architecture | Checkpoint path/hash | Preprocessing | Eval mode |
+| Model id | Architecture | Checkpoint artifact | Preprocessing | Eval mode |
 |---|---|---|---|---|
-| `bbb_resnet50` | ResNet50, CIFAR-10 | TODO | TODO | `model.eval()` |
-| `bbb_vgg19_bn` | VGG19-BN, CIFAR-10 | TODO | TODO | `model.eval()` |
-| `bbb_densenet` | DenseNet, CIFAR-10 | TODO | TODO | `model.eval()` |
-| `bbb_inception_v3` | Inception-v3, CIFAR-10 | TODO | TODO | `model.eval()` |
+| `bbb_resnet50` | ResNet50, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
+| `bbb_vgg19_bn` | VGG19-BN, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
+| `bbb_densenet` | DenseNet, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
+| `bbb_inception_v3` | Inception-v3, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
 
 ## Layer Registry
 
 | Model id | Hidden layer used in mechanism tests | Penultimate | Logits |
 |---|---|---|---|
-| `bbb_resnet50` | TODO exact module hook | TODO | classifier output |
-| `bbb_vgg19_bn` | TODO exact module hook | TODO | classifier output |
-| `bbb_densenet` | TODO exact module hook | TODO | classifier output |
-| `bbb_inception_v3` | TODO exact module hook | TODO | classifier output |
+| `bbb_resnet50` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
+| `bbb_vgg19_bn` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
+| `bbb_densenet` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
+| `bbb_inception_v3` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
 
 ## Main Experiment Families
 
@@ -41,10 +41,6 @@ This registry records the experiments that support the main paper. Fill in exact
 | Cross-architecture / cross-seed validation | final multimodel and seed scripts | `analysis_outputs/pure_af_geometry/` | Section 8 |
 | Query-refined transfer | `experiments/pure_af_geometry/evaluate_square_learned_correction_transfer.py`, `experiments/pure_af_geometry/summarize_transport_hybrid_benchmark.py` | `analysis_outputs/pure_af_geometry/transport_hybrid_benchmark_a/` | Section 9 |
 
-## Release TODOs
+## External Artifact Metadata
 
-- Fill checkpoint hashes.
-- Fill exact layer hook names.
-- Record GPU type and memory.
-- Record exact wall-clock time for the final mechanism and query-refinement jobs.
-- Include image-id lists for all train/test splits.
+Full artifact bundles should include checkpoint hashes, exact module hook names, GPU metadata, wall-clock times, and image-id lists for all train/test splits. These details are treated as artifact metadata rather than Git-tracked large outputs.

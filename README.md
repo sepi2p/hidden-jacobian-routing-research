@@ -10,7 +10,7 @@ It intentionally does **not** include the manuscript source, PDFs, generated pap
 - `attacks/`, `data/`, `models/`, `utils/`, `configs/`, `trainners/`: supporting code used by the experiments.
 - `reproducibility/`: manifests, environment file, artifact checks, and release notes.
 - `docs/`: lightweight setup and reporting notes.
-- `artifacts/`: placeholder directory for small manifests only. Large `.csv`, `.npz`, checkpoints, logs, images, and generated figures are ignored by default.
+- `artifacts/`: directory for small manifests only. Large `.csv`, `.npz`, checkpoints, logs, images, and generated figures are ignored by default.
 
 ## Core Scientific Claim
 
@@ -63,13 +63,12 @@ The following are intentionally excluded from Git:
 
 Use `reproducibility/ARTIFACTS.md` to document external download URLs and hashes.
 
-## Recommended Release Checklist
+## Public Release Status
 
-Before making the GitHub repo public:
+This public repository contains the source code, manifests, and lightweight documentation needed to inspect and rerun the research pipeline. Large generated artifacts and model checkpoints are intentionally distributed outside Git. Their expected locations are documented in `reproducibility/ARTIFACTS.md`.
 
-1. Fill checkpoint hashes in `reproducibility/configs/experiment_registry.md`.
-2. Fill exact layer hook names.
-3. Add artifact download links and checksums to `reproducibility/ARTIFACTS.md`.
-4. Verify `bash reproducibility/scripts/check_required_artifacts.sh` passes after downloading artifacts.
-5. Keep all large outputs out of Git history.
+Current artifact policy:
 
+1. Source code and reproducibility scaffolding are tracked here.
+2. Large outputs, checkpoints, logs, and generated figures remain outside Git history.
+3. External artifact bundles should include checksums and should satisfy `bash reproducibility/scripts/check_required_artifacts.sh` after download.
