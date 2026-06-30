@@ -33,13 +33,13 @@ This registry records the experiments that support the main paper. Large checkpo
 
 | Family | Main script(s) | Output directory | Main manuscript use |
 |---|---|---|---|
-| Initial concentration/separability | `experiments/pure_af_geometry/analyze_*success*`, paper figure scripts | `analysis_outputs/pure_af_geometry/` | Sections 3--5 |
-| Objective-neutral mobility | `experiments/pure_af_geometry/analyze_cifar_objective_neutral_mobility_flow.py` | `analysis_outputs/pure_af_geometry/` | Section 6 |
-| Mobility versus margin selector | `experiments/pure_af_geometry/analyze_*mobility_margin*` | `analysis_outputs/pure_af_geometry/` | Section 6 |
-| JVP mechanism controls | `experiments/pure_af_geometry/analyze_jacobian_residual_nulls.py` and related final scripts | `analysis_outputs/pure_af_geometry/` | Section 6 |
-| Matched pullback interventions | matched intervention scripts under `experiments/pure_af_geometry/` | `analysis_outputs/pure_af_geometry/` | Section 7 |
-| Cross-architecture / cross-seed validation | final multimodel and seed scripts | `analysis_outputs/pure_af_geometry/` | Section 8 |
-| Query-refined transfer | `experiments/pure_af_geometry/evaluate_square_learned_correction_transfer.py`, `experiments/pure_af_geometry/summarize_transport_hybrid_benchmark.py` | `analysis_outputs/pure_af_geometry/transport_hybrid_benchmark_a/` | Section 9 |
+| Initial concentration/separability | `experiments/hidden_jacobian_routing/analyze_flow_tube_dimensionality.py`, `experiments/hidden_jacobian_routing/analyze_flow_subspace_predictiveness.py` | `analysis_outputs/hidden_jacobian_routing/` | Sections 3--5 |
+| Objective-neutral mobility | `experiments/hidden_jacobian_routing/analyze_cifar_objective_neutral_mobility_flow.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
+| Mobility versus margin selector | `experiments/hidden_jacobian_routing/test_mobility_margin_two_stage_selection.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
+| JVP mechanism controls | `experiments/hidden_jacobian_routing/test_mobility_vs_jacobian_gain.py`, `experiments/hidden_jacobian_routing/test_jacobian_basis_and_residual_transport.py`, `experiments/hidden_jacobian_routing/test_clean_whitened_mobility_jvp.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
+| Matched pullback interventions | `experiments/hidden_jacobian_routing/run_matched_jacobian_intervention_controls.py` | `analysis_outputs/hidden_jacobian_routing/` | Intervention section |
+| Road tracing diagnostics | `experiments/hidden_jacobian_routing/trace_jacobian_singular_roads.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism/appendix |
+| Query-refined transfer | `experiments/hidden_jacobian_routing/evaluate_square_learned_correction_transfer.py`, `experiments/hidden_jacobian_routing/summarize_transport_hybrid_benchmark.py` | `analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/` | Application section |
 
 ## External Artifact Metadata
 

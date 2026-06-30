@@ -6,11 +6,11 @@ It intentionally does **not** include the manuscript source, PDFs, generated pap
 
 ## What This Repo Contains
 
-- `experiments/pure_af_geometry/`: experiment and analysis scripts for transport trajectories, mobility/JVP controls, selector diagnostics, matched interventions, and query-refined transfer.
-- `attacks/`, `data/`, `models/`, `utils/`, `configs/`, `trainners/`: supporting code used by the experiments.
-- `reproducibility/`: manifests, environment file, artifact checks, and release notes.
-- `docs/`: lightweight setup and reporting notes.
-- `artifacts/`: directory for small manifests only. Large `.csv`, `.npz`, checkpoints, logs, images, and generated figures are ignored by default.
+- `experiments/hidden_jacobian_routing/`: paper experiment and analysis scripts for transport concentration, mobility/JVP controls, selector diagnostics, matched interventions, trajectory-road probes, and query-refined transfer.
+- `attacks/`: the Square Attack probability schedule used by the paper scripts.
+- `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
+- `utils/`: a minimal CIFAR model loader for the evaluated models.
+- `reproducibility/`: manifests, environment file, and artifact checks.
 
 ## Core Scientific Claim
 
@@ -55,17 +55,15 @@ The following are intentionally excluded from Git:
 
 - `analysis_outputs/`
 - `checkpoints/`
-- `attack_prior_data/`
-- `save/`
 - `logs/`
 - `*.npz`, `*.pt`, `*.pth`, `*.ckpt`
 - generated figures/PDFs/images
 
-Use `reproducibility/ARTIFACTS.md` to document external download URLs and hashes.
+Distribute large artifacts outside Git, for example through a GitHub Release, Zenodo, OSF, or another archival service.
 
 ## Public Release Status
 
-This public repository contains the source code, manifests, and lightweight documentation needed to inspect and rerun the research pipeline. Large generated artifacts and model checkpoints are intentionally distributed outside Git. Their expected locations are documented in `reproducibility/ARTIFACTS.md`.
+This public repository contains the source code, manifests, and lightweight documentation needed to inspect and rerun the research pipeline. Large generated artifacts and model checkpoints are intentionally distributed outside Git.
 
 Current artifact policy:
 

@@ -29,7 +29,7 @@ viz_*/
 
 # Large model/data artifacts
 checkpoints/
-surro_models/
+# surro_models/ is intentionally tracked only for paper-used CIFAR model definitions.
 attack_prior_data/
 save/
 external_repos/
@@ -60,8 +60,4 @@ external_repos/
 *.blg
 *.out
 *.toc
-
-# Allow placeholder docs in artifacts
-!artifacts/README.md
-!reproducibility/ARTIFACTS.md
 

@@ -6,7 +6,7 @@ This directory documents how to reproduce the research artifacts without storing
 
 - `scripts/check_required_artifacts.sh` checks whether externally downloaded summary artifacts are present.
 - `configs/experiment_registry.md` records model IDs, checkpoint hashes, layer hooks, and experiment families.
-- `configs/figure_table_manifest.csv` records the logical mapping from research outputs to summary artifacts. It is a manifest, not a paper build script.
+- `configs/research_artifact_manifest.csv` records the logical mapping from research outputs to summary artifacts. It is a manifest, not a paper build script.
 
 ## What Is Excluded
 
@@ -20,7 +20,7 @@ The Git repository intentionally excludes:
 - large CSV logs;
 - attack logs.
 
-Use `ARTIFACTS.md` to provide download URLs and hashes for those external files.
+Distribute external artifacts separately with download URLs and checksums. The script `scripts/check_required_artifacts.sh` validates the expected file layout after download.
 
 ## Reproducibility Levels
 
@@ -39,4 +39,3 @@ Run the experiment scripts listed in `configs/experiment_registry.md`. Expensive
 **Level 3: Full raw rerun**
 
 Requires public model checkpoints, image-id lists, exact layer hooks, and sufficient GPU time. This is expected to be substantially more expensive than Level 1.
-

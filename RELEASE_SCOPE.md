@@ -1,25 +1,25 @@
 # Release Scope
 
-This repository contains both canonical experiment scripts and exploratory analysis utilities that were useful during the research process.
+This is a curated paper-only code release for the hidden-Jacobian routing study.
 
-For reproduction of the paper's main claims, use:
+The repository includes:
 
-- `reproducibility/MANIFEST.md`
-- `reproducibility/configs/research_artifact_manifest.csv`
-- `reproducibility/configs/experiment_registry.md`
+- experiment scripts mapped in `reproducibility/MANIFEST.md`;
+- helper scripts imported by those mapped experiments;
+- the Square Attack probability schedule used by the query-search experiments;
+- CIFAR-10 model definitions for the architectures evaluated in the paper;
+- lightweight reproducibility manifests and environment files.
 
-Scripts outside the manifest are included for transparency and auditability, but they should not be interpreted as promoted paper claims. In particular, older scripts may use historical names such as `flow`, `success_flow`, `away`, or `pure`; these names reflect development history, not the final scientific framing. The final interpretation is:
+The repository intentionally excludes:
 
-> hidden-Jacobian mobility proposes feasible high-motion directions, and margin/gradient dynamics select adversarially useful directions under budget.
-
-The repository excludes:
-
-- manuscript LaTeX source;
-- PDF files;
-- generated paper figures;
+- manuscript LaTeX source and PDFs;
+- generated figures and tables;
 - model checkpoints;
-- raw trajectory vectors;
-- large CSV/NPZ artifacts;
-- logs.
+- raw trajectory vectors and large CSV/NPZ outputs;
+- scripts and model families outside this paper.
 
-Large artifacts should be distributed separately and documented in `reproducibility/ARTIFACTS.md`.
+The final scientific framing is:
+
+> Hidden-Jacobian mobility proposes feasible high-motion directions, and margin/gradient dynamics select adversarially useful directions under budget.
+
+Large artifacts must be distributed outside Git, for example through a GitHub Release, Zenodo, OSF, or another archival service.
