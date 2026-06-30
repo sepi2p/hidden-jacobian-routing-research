@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+*.conda
+
+# Jupyter/editor
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Logs and generated outputs
+logs/
+results/
+analysis_outputs/
+paper_artifacts/
+figures/
+viz_*/
+*.log
+
+# Large model/data artifacts
+checkpoints/
+surro_models/
+attack_prior_data/
+save/
+external_repos/
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+
+# Generated media / paper files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.eps
+*.gif
+*.mp4
+*.html
+*.tex
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+
+# Allow placeholder docs in artifacts
+!artifacts/README.md
+!reproducibility/ARTIFACTS.md
+
