@@ -16,14 +16,9 @@ This manifest maps paper components to the scripts retained in this public code 
 | Matched pullback interventions | Compare transport PCs with JVP, failed-attack, residual, and matched-random bases | `experiments/hidden_jacobian_routing/run_matched_jacobian_intervention_controls.py` | intervention summary CSVs |
 | Sign/time optimizer comparison | Compare successful PGD/Square hidden trajectories under sign- and time-sensitive metrics | `experiments/hidden_jacobian_routing/analyze_sign_time_optimizer_similarity.py` | optimizer-signature summary CSVs |
 | Road tracing diagnostics | Trace high-mobility hidden-Jacobian roads as integral curves | `experiments/hidden_jacobian_routing/trace_jacobian_singular_roads.py` | road tracing CSVs |
+| White-box road-routing attack | Benchmark margin-selected hidden-Jacobian road routing against PGD/APGD/FAB-style baselines | `experiments/hidden_jacobian_routing/benchmark_whitebox_road_routing.py`, `experiments/hidden_jacobian_routing/benchmark_multimodel_road_routing.py`, `experiments/hidden_jacobian_routing/evaluate_topk_margin_selected_singular_roads_on_balanced.py` | road-routing per-image and summary CSVs |
+| Road-routing figures | Rebuild the paper's hidden-Jacobian road-map visualizations from saved or recomputed traces | `experiments/hidden_jacobian_routing/plot_hidden_jacobian_road_map.py`, `experiments/hidden_jacobian_routing/plot_margin_selected_singular_road_vs_pgd.py`, `experiments/hidden_jacobian_routing/plot_objective_neutral_mobility_selector_figure.py` | road-map and mobility-selector figures |
 | Training dynamics / seed support | Support appendix checks on recurrence across independently trained ResNet18 checkpoints | `experiments/hidden_jacobian_routing/run_cifar_training_dynamics_transport.py` | checkpoint transport summaries |
-
-## Query-Refined Transfer Scripts
-
-| Component | Purpose | Main scripts | Expected external outputs |
-|---|---|---|---|
-| Surrogate-assisted query-refined transfer | Evaluate CE/transport proposal families under score-query access | `experiments/hidden_jacobian_routing/evaluate_square_learned_correction_transfer.py` | per-image and summary CSVs |
-| Query-refined transfer post-processing | Build ASR curves, delta tables, overlap tables, and bootstrap summaries | `experiments/hidden_jacobian_routing/summarize_transport_hybrid_benchmark.py` | posthoc summary CSVs |
 
 ## Helper Modules
 
@@ -31,7 +26,6 @@ This manifest maps paper components to the scripts retained in this public code 
 |---|---|
 | `experiments/hidden_jacobian_routing/common.py` | Shared layer hooks, margins, projections, model loading wrappers, and Square trajectory helper |
 | `experiments/hidden_jacobian_routing/analyze_jacobian_null_response_pilot.py` | Balanced trajectory generation and PGD helper reused by JVP analyses |
-| `experiments/hidden_jacobian_routing/evaluate_square_learned_correction_policy.py` | Source-side proposal-policy utilities imported by the query-refined transfer script |
 | `attacks/square.py` | Square Attack probability schedule |
 
 ## Expensive Outputs Not Stored in Git

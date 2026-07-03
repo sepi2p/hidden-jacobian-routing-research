@@ -17,4 +17,5 @@ dependencies:
   - pyyaml
   - pytorch
   - torchvision
-
+  - pip:
+      - autoattack

@@ -6,10 +6,7 @@ import os
 
 import torch
 
-from surro_models.blackboxbench_cifar10 import densenet as bbb_densenet
-from surro_models.blackboxbench_cifar10 import inceptionv3 as bbb_inceptionv3
-from surro_models.blackboxbench_cifar10 import resnet50 as bbb_resnet50
-from surro_models.blackboxbench_cifar10 import vgg19_bn as bbb_vgg19_bn
+from surro_models.blackboxbench_cifar10 import densenet, inceptionv3, resnet50, vgg19_bn
 
 
 class NormalizeByChannelMeanStd(torch.nn.Module):
@@ -37,19 +34,19 @@ def _load_state_dict_strict(model, checkpoint_path, state_dict_key="state_dict")
 
 def load_blackboxbench_cifar_model(model_name, home_path="checkpoints/blackboxbench_cifar10/ckpt"):
     if model_name == "bbb_vgg19_bn":
-        pretrained_model = bbb_vgg19_bn(num_classes=10)
+        pretrained_model = vgg19_bn(num_classes=10)
         model_checkpoint_path = os.path.join(home_path, "vgg19_bn", "model_best.pth.tar")
         pretrained_model.features = torch.nn.DataParallel(pretrained_model.features)
         _load_state_dict_strict(pretrained_model, model_checkpoint_path)
         pretrained_model.features = pretrained_model.features.module
     elif model_name == "bbb_densenet":
-        pretrained_model = bbb_densenet(num_classes=10)
+        pretrained_model = densenet(num_classes=10)
         model_checkpoint_path = os.path.join(home_path, "densenet-bc-L190-k40", "model_best.pth.tar")
         wrapped_model = torch.nn.DataParallel(pretrained_model)
         _load_state_dict_strict(wrapped_model, model_checkpoint_path)
         pretrained_model = wrapped_model.module
     elif model_name == "bbb_resnet50":
-        pretrained_model = bbb_resnet50()
+        pretrained_model = resnet50()
         model_checkpoint_path = os.path.join(
             os.path.dirname(home_path),
             "kaggle",
@@ -58,7 +55,7 @@ def load_blackboxbench_cifar_model(model_name, home_path="checkpoints/blackboxbe
         )
         _load_state_dict_strict(pretrained_model, model_checkpoint_path, state_dict_key="net")
     elif model_name == "bbb_inception_v3":
-        pretrained_model = bbb_inceptionv3()
+        pretrained_model = inceptionv3()
         model_checkpoint_path = os.path.join(
             os.path.dirname(home_path),
             "kaggle",

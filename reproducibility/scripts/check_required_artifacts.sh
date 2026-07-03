@@ -5,11 +5,11 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 required=(
-  "analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/posthoc_summary/asr_curve_table_by_target.csv"
-  "analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/posthoc_summary/delta_table_q100.csv"
-  "analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/posthoc_summary/success_overlap_table_q100.csv"
-  "analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/posthoc_summary/paired_bootstrap_ci_q100_q250.csv"
-  "analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/posthoc_summary/proposal_acceptance_margin_diagnostics.csv"
+  "analysis_outputs/hidden_jacobian_routing/multimodel_road_routing_cifar_c200/summary.csv"
+  "analysis_outputs/hidden_jacobian_routing/matched_jacobian_intervention_controls/summary.csv"
+  "analysis_outputs/hidden_jacobian_routing/two_stage_mobility_margin_sweep/selector_summary.csv"
+  "analysis_outputs/hidden_jacobian_routing/jvp_mobility_multimodel/summary.csv"
+  "analysis_outputs/hidden_jacobian_routing/actual_trajectory_jvp_linearity/summary.csv"
 )
 
 missing=0
@@ -23,8 +23,9 @@ for path in "${required[@]}"; do
 done
 
 if [[ "$missing" -ne 0 ]]; then
-  echo "One or more required artifacts are missing."
+  echo "One or more core summary artifacts are missing."
+  echo "Download the external artifact bundle or rerun the mapped scripts in reproducibility/MANIFEST.md."
   exit 1
 fi
 
-echo "All required core artifacts are present."
+echo "All required core summary artifacts are present."

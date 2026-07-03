@@ -34,7 +34,7 @@ bash reproducibility/scripts/check_required_artifacts.sh
 
 **Level 2: Experiment rerun**
 
-Run the experiment scripts listed in `configs/experiment_registry.md`. Expensive runs include JVP sketches, matched interventions, trajectory extraction, and query-refined transfer.
+Run the experiment scripts listed in `configs/experiment_registry.md`. Expensive runs include JVP sketches, matched interventions, trajectory extraction, and white-box road-routing benchmarks.
 
 **Level 3: Full raw rerun**
 

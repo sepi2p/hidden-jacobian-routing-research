@@ -7,9 +7,8 @@ This registry records the experiments that support the main paper. Large checkpo
 - Dataset: CIFAR-10 test images unless otherwise stated.
 - Main clean-correct filtering: use images correctly classified by all models involved in the comparison.
 - Main perturbation norm: \(L_\infty\).
-- Main source model for query-refined transfer: `bbb_resnet50`.
-- Main target models for query-refined transfer: `bbb_vgg19_bn`, `bbb_densenet`, `bbb_inception_v3`.
-- Target-output access in Section 9: class logits or equivalent class scores, not top-1 labels only.
+- White-box road-routing benchmark: `bbb_resnet50`, `bbb_vgg19_bn`, `bbb_densenet`, and `bbb_inception_v3`.
+- Road-routing access model: white-box hidden activations, logits, gradients, and JVP/VJP operations.
 
 ## Model Registry
 
@@ -39,7 +38,8 @@ This registry records the experiments that support the main paper. Large checkpo
 | JVP mechanism controls | `experiments/hidden_jacobian_routing/test_mobility_vs_jacobian_gain.py`, `experiments/hidden_jacobian_routing/test_jacobian_basis_and_residual_transport.py`, `experiments/hidden_jacobian_routing/test_clean_whitened_mobility_jvp.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
 | Matched pullback interventions | `experiments/hidden_jacobian_routing/run_matched_jacobian_intervention_controls.py` | `analysis_outputs/hidden_jacobian_routing/` | Intervention section |
 | Road tracing diagnostics | `experiments/hidden_jacobian_routing/trace_jacobian_singular_roads.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism/appendix |
-| Query-refined transfer | `experiments/hidden_jacobian_routing/evaluate_square_learned_correction_transfer.py`, `experiments/hidden_jacobian_routing/summarize_transport_hybrid_benchmark.py` | `analysis_outputs/hidden_jacobian_routing/transport_hybrid_benchmark_a/` | Application section |
+| White-box road-routing attack | `experiments/hidden_jacobian_routing/benchmark_multimodel_road_routing.py`, `experiments/hidden_jacobian_routing/benchmark_whitebox_road_routing.py`, `experiments/hidden_jacobian_routing/evaluate_topk_margin_selected_singular_roads_on_balanced.py` | `analysis_outputs/hidden_jacobian_routing/` | Road-routing section |
+| Road-map figures | `experiments/hidden_jacobian_routing/plot_hidden_jacobian_road_map.py`, `experiments/hidden_jacobian_routing/plot_margin_selected_singular_road_vs_pgd.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism figures |
 
 ## External Artifact Metadata
 

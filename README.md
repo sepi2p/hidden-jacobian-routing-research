@@ -6,7 +6,7 @@ It intentionally does **not** include the manuscript source, PDFs, generated pap
 
 ## What This Repo Contains
 
-- `experiments/hidden_jacobian_routing/`: paper experiment and analysis scripts for transport concentration, mobility/JVP controls, selector diagnostics, matched interventions, trajectory-road probes, and query-refined transfer.
+- `experiments/hidden_jacobian_routing/`: paper experiment and analysis scripts for transport concentration, mobility/JVP controls, selector analyses, matched interventions, trajectory-road probes, and the white-box road-routing attack.
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
@@ -18,13 +18,13 @@ The repository supports a scoped empirical claim:
 
 > Apparent hidden transport structure in successful adversarial trajectories is best explained as hidden-Jacobian high-mobility proposal geometry plus margin/gradient-based selection, not as a distinct adversarial-only flow.
 
-The query-refined transfer scripts test a scoped application: surrogate CE and transport proposals can improve low-query target selection under score-query access. This is not a state-of-the-art black-box attack claim.
+The road-routing scripts implement the paper's constructive white-box attack: hidden-Jacobian singular directions provide the candidate roads, and margin-based selection chooses the adversarially useful route under an \(L_\infty\) budget.
 
 ## Access Models
 
 - Mechanism diagnostics: white-box model internals, hidden activations, gradients, and JVPs.
 - Matched interventions: white-box source-model pullbacks.
-- Query-refined transfer: white-box surrogate model plus score-query target access. Target queries return logits or equivalent class scores, not top-1 labels only.
+- White-box road-routing attack: source-model gradients/JVPs, hidden activations, logits, and margin evaluations.
 
 ## Setup
 
