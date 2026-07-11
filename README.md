@@ -1,16 +1,16 @@
 # Hidden-Jacobian Mobility in Adversarial Trajectories
 
-This repository contains the research code and reproducibility scaffolding for a coordinate-level empirical audit of adversarial trajectories against hidden-Jacobian mobility, objective-conditioned candidate evaluation, and finite-step residual motion.
+This repository contains the research code and reproducibility scaffolding for a coordinate-level empirical audit of adversarial trajectories against hidden-Jacobian mobility, initial attack difficulty, finite-step residual motion, and budget-dependent pullback avoidance.
 
 It intentionally does **not** include manuscript source, PDFs, generated paper figures, checkpoints, or dense raw trajectory arrays. The tracked split registries and table-ready summaries provide a lightweight audit layer; the mapped scripts regenerate the larger outputs.
 
 ## What This Repo Contains
 
-- `experiments/hidden_jacobian_routing/`: experiment and analysis scripts for transport concentration, exact clean-start comparison, mobility/JVP controls, selector analyses, coordinate stress tests, matched interventions, supporting pilots, and the white-box road-routing diagnostic.
+- `experiments/hidden_jacobian_routing/`: experiment and analysis scripts for transport concentration, nested layer selection, difficulty controls, mobility/JVP tests, the norm-native comparator, coordinate stress tests, pullback avoidance, matched interventions, and supporting pilots.
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
-- `artifacts/table_inputs/`: the 37 lightweight numeric table inputs used by the current manuscript.
+- `artifacts/table_inputs/`: the lightweight numeric table inputs used by the current manuscript.
 - `artifacts/analysis_summaries/`: run-level and aggregated metrics for the exact clean-start comparator, including grouped out-of-fold increments, conditional image-bootstrap intervals, and the realized-JVP pilot.
 - `artifacts/splits/`: exact CIFAR split, model, layer, and attack registries.
 - `reproducibility/`: claim-to-evidence mapping, checkpoint hashes, release metadata, and deterministic checks.
@@ -19,15 +19,12 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 
 The repository supports a scoped empirical claim:
 
-> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion; objective-aware candidate evaluation and finite-step residuals account for additional aspects of attack trajectories.
-
-The road-routing scripts implement a constructive white-box diagnostic: hidden-Jacobian singular directions provide candidate moves, and margin-based selection chooses among them under an \(L_\infty\) budget. The release does not present this diagnostic as a practical or state-of-the-art attack.
+> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion. The fitted input pullbacks are functionally important to the tested tight-budget attacks, but are bypassable at a larger budget.
 
 ## Access Models
 
 - Mechanism diagnostics: white-box model internals, hidden activations, gradients, and JVPs.
-- Matched interventions: white-box source-model pullbacks.
-- White-box road-routing attack: source-model gradients/JVPs, hidden activations, logits, and margin evaluations.
+- Pullback-avoidance and matched interventions: white-box source-model features, JVP/VJP operations, and margins.
 
 ## Setup
 
@@ -81,6 +78,18 @@ python experiments/hidden_jacobian_routing/analyze_ko_proposal_sign_radius.py \
 ```
 
 The queue skips completed `DONE` shards, so interruption does not discard finished model/seed combinations. The grouped-CV script fits standardization and logistic regression inside each image-grouped training fold and predicts held-out image groups only. Its bootstrap intervals are conditional on the fitted OOF models and selected layer; they are not full-pipeline uncertainty intervals.
+
+## Difficulty, Norm-Native, and Avoidance Tests
+
+The current release adds the three experiments used to resolve the strongest alternative explanations:
+
+```bash
+python experiments/hidden_jacobian_routing/run_success_difficulty_control.py --help
+python experiments/hidden_jacobian_routing/run_linf_induced_jacobian_comparator.py --help
+python experiments/hidden_jacobian_routing/run_mechanism_breaking_attacks.py --help
+```
+
+The first measures the incremental out-of-fold contribution of transport energy after clean difficulty and first-step progress. The second compares signed Euclidean singular directions with an approximate induced \((\infty,2)\) maximizer. The third removes a fixed five-dimensional transport pullback during margin-PGD and includes a dimension-matched random-subspace control. Frozen aggregate outputs are under `artifacts/analysis_summaries/`.
 
 ## Large Files
 

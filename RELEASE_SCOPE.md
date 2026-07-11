@@ -1,6 +1,6 @@
 # Release Scope
 
-This is a curated paper-only code release for the hidden-Jacobian routing study.
+This is a curated paper-only code release for the hidden-Jacobian mobility study.
 
 The repository includes:
 
@@ -20,6 +20,6 @@ The repository intentionally excludes:
 
 The final scientific framing is:
 
-> Hidden-Jacobian mobility proposes feasible high-motion directions, and margin/gradient dynamics select adversarially useful directions under budget.
+> Successful-trajectory PCA summarizes realizable hidden-Jacobian mobility in checkpoint coordinates; the fitted pullbacks are important under the tested tight budget but bypassable at a larger budget.
 
 The tracked artifact bundle contains only lightweight table-ready summaries, exact clean-start run summaries, split registries, and checksums. Raw trajectories, checkpoints, and dense arrays are regenerated with the mapped scripts and are not committed to Git.

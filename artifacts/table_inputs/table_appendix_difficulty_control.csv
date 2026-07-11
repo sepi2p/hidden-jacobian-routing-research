@@ -1,0 +1,5 @@
+Model,Difficulty-only AUPRC,+ transport AUPRC,$\Delta$AUPRC,Matched transport AUROC
+ResNet50,0.979,0.983,0.0039,0.880
+VGG19-BN,0.962,0.968,0.0061,0.698
+DenseNet,0.981,0.987,0.0057,0.845
+Inception-v3,0.946,0.959,0.0133,0.813

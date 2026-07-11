@@ -1,0 +1,5 @@
+Model,Test images,Clean accuracy,NLL,ECE-15
+ResNet50,10000,95.31,0.233,0.032
+VGG19-BN,10000,93.34,0.330,0.049
+DenseNet,10000,96.68,0.170,0.023
+Inception-v3,10000,94.78,0.247,0.038
