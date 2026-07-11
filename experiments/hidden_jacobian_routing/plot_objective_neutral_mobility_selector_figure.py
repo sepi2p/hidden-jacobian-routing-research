@@ -105,7 +105,7 @@ def main() -> None:
     ax.set_xticks(x)
     ax.set_xticklabels(mobility["basis"])
     ax.set_ylim(0, 1.0)
-    ax.set_title("A. mobility predicts transport energy")
+    ax.set_title("A. mobility associates with transport energy")
     ax.set_ylabel("score")
     ax.legend(frameon=False, loc="lower right")
     ax.grid(axis="y", alpha=0.16)
@@ -132,11 +132,11 @@ def main() -> None:
     selector_small["label"] = selector_small["selector"].map(label_map)
     ax.bar(selector_small["label"], selector_small["top5"], color=["#bdbdbd", "#6f55a3", "#e18a2c", "#4f9f73"])
     ax.set_ylim(0, max(selector_small["top5"].max() * 1.25, 36))
-    ax.set_title("C. margin is needed for selection")
+    ax.set_title("C. candidate selector comparison")
     ax.set_ylabel("top-5 candidate ASR (%)")
     ax.grid(axis="y", alpha=0.16)
 
-    fig.suptitle("Objective-neutral mobility is a proposal signal, not a selector", fontsize=10)
+    fig.suptitle("Objective-neutral mobility and candidate outcomes", fontsize=10)
     png = out / "objective_neutral_mobility_selector_summary.png"
     pdf = out / "objective_neutral_mobility_selector_summary.pdf"
     fig.savefig(png, dpi=250, bbox_inches="tight")
