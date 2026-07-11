@@ -10,7 +10,7 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
-- `artifacts/table_inputs/`: the 36 lightweight numeric table inputs used by the current manuscript.
+- `artifacts/table_inputs/`: the 37 lightweight numeric table inputs used by the current manuscript.
 - `artifacts/analysis_summaries/`: run-level and aggregated metrics for the exact clean-start comparator, including grouped out-of-fold increments, conditional image-bootstrap intervals, and the realized-JVP pilot.
 - `artifacts/splits/`: exact CIFAR split, model, layer, and attack registries.
 - `reproducibility/`: claim-to-evidence mapping, checkpoint hashes, release metadata, and deterministic checks.
@@ -75,6 +75,9 @@ python reproducibility/scripts/summarize_exact_ko.py \
 python experiments/hidden_jacobian_routing/summarize_ko_grouped_cv_incremental.py \
   --input-root analysis_outputs/hidden_jacobian_routing/exact_protocol/phase1a_ko_cleanstart_comparator \
   --output-dir analysis_outputs/hidden_jacobian_routing/exact_protocol/ko_grouped_cv_incremental
+python experiments/hidden_jacobian_routing/analyze_ko_proposal_sign_radius.py \
+  --input-root analysis_outputs/hidden_jacobian_routing/exact_protocol/phase1a_ko_cleanstart_comparator \
+  --output-dir analysis_outputs/hidden_jacobian_routing/exact_protocol/ko_proposal_sign_radius
 ```
 
 The queue skips completed `DONE` shards, so interruption does not discard finished model/seed combinations. The grouped-CV script fits standardization and logistic regression inside each image-grouped training fold and predicts held-out image groups only. Its bootstrap intervals are conditional on the fitted OOF models and selected layer; they are not full-pipeline uncertainty intervals.

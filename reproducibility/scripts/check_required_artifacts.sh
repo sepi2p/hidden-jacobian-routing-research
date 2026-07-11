@@ -16,6 +16,9 @@ required=(
   artifacts/analysis_summaries/ko_grouped_cv_incremental_summary.csv
   artifacts/analysis_summaries/ko_grouped_cv_delta_image_bootstrap.csv
   artifacts/analysis_summaries/ko_realized_jvp_metrics_resnet50_n25.csv
+  artifacts/analysis_summaries/ko_proposal_coverage_summary.csv
+  artifacts/analysis_summaries/ko_sign_selection_summary.csv
+  artifacts/analysis_summaries/ko_radius_selection_summary.csv
   reproducibility/configs/checkpoint_registry.csv
   reproducibility/configs/claim_evidence_map.csv
 )
@@ -25,6 +28,6 @@ for path in "${required[@]}"; do
 done
 
 count=$(find artifacts/table_inputs -maxdepth 1 -name 'table_*.csv' -type f | wc -l)
-test "$count" -eq 36 || { echo "expected 36 frozen paper tables, found $count" >&2; exit 1; }
+test "$count" -eq 37 || { echo "expected 37 frozen paper tables, found $count" >&2; exit 1; }
 
-echo "release layout OK: 36 table inputs, corrected grouped-OOF comparator summaries, splits, and protocol registries"
+echo "release layout OK: 37 table inputs, corrected grouped-OOF and proposal/sign/radius summaries, splits, and protocol registries"
