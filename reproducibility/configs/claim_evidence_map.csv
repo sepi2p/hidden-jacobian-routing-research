@@ -12,7 +12,7 @@ tab:appendix-linf-native-comparator,norm-native comparator,run_linf_induced_jaco
 tab:ko-cleanstart-comparator,prior-work null comparator,"run_exact_ko_cleanstart_comparator.py; summarize_ko_grouped_cv_incremental.py",artifacts/table_inputs/table_ko_cleanstart_comparator_compact.csv
 tab:transport-avoidance-main,primary functional test,"run_mechanism_breaking_attacks.py; summarize_mechanism_breaking_paired.py",artifacts/analysis_summaries/mechanism_breaking/
 tab:appendix-mechanism-breaking-full,full functional diagnostics,"run_mechanism_breaking_attacks.py; summarize_mechanism_breaking_paired.py",artifacts/table_inputs/table_appendix_mechanism_breaking_full.csv
-tab:appendix-checkpoint-metrics,checkpoint audit,registered full-test evaluation,artifacts/analysis_summaries/checkpoint_metrics.csv
+tab:appendix-checkpoint-metrics,checkpoint audit,evaluate_checkpoint_metrics.py,artifacts/analysis_summaries/checkpoint_metrics.csv
 tab:appendix-decomposition-robustness,decomposition sensitivity,analyze_decomposition_sensitivity.py,artifacts/table_inputs/table_appendix_decomposition_robustness.csv
 tab:appendix-nonadversarial-controls,generic optimization control,analyze_cifar_nonadversarial_optimization_controls.py,artifacts/table_inputs/table_appendix_nonadversarial_controls.csv
 tab:appendix-robustbench-hidden-jacobian,robust-model pilot,run_robustbench_local_mobility_pilot.py,artifacts/table_inputs/table_appendix_robustbench_hidden_jacobian_pilot.csv
@@ -23,7 +23,7 @@ tab:appendix-finite-budget-jvp-residual-progress,finite-step residual,run_finite
 tab:appendix-matched-intervention-controls-full,behavioral activity control,run_matched_jacobian_intervention_controls.py,artifacts/table_inputs/table_matched_intervention_controls.csv
 tab:appendix-actual-step-jvp-linearity,recorded-step diagnostic,test_actual_trajectory_jvp_linearization.py,artifacts/table_inputs/table_actual_step_jvp_linearity.csv
 tab:appendix-attack-road-selection-diagnostic,proposal-level diagnostic,analyze_attack_road_selection_diagnostic.py,artifacts/table_inputs/table_appendix_attack_road_selection_diagnostic.csv
-tab:appendix-checkpoint-metrics-input,checkpoint table input,registered full-test evaluation,artifacts/table_inputs/table_appendix_checkpoint_metrics.csv
+tab:appendix-checkpoint-metrics-input,checkpoint table input,evaluate_checkpoint_metrics.py,artifacts/table_inputs/table_appendix_checkpoint_metrics.csv
 tab:appendix-coordinate-stress,offline coordinate stress,test_clean_whitened_mobility_jvp.py,artifacts/table_inputs/table_appendix_coordinate_stress.csv
 tab:appendix-difficulty-control-input,difficulty table input,run_success_difficulty_control.py,artifacts/table_inputs/table_appendix_difficulty_control.csv
 tab:pc-intervention-summary,random-direction intervention,run_matched_jacobian_intervention_controls.py,artifacts/table_inputs/table_appendix_intervention_pc_validation.csv
