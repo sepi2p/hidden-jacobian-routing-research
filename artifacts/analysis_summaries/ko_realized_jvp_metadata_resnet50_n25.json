@@ -1,0 +1,6 @@
+{
+  "script": "run_ko_realized_jvp_gain_pilot.py",
+  "purpose": "pilot actual candidate JVP gain after sign/projection/clipping",
+  "rows": "analysis_outputs/pure_af_geometry/q1_reviewer_validation/exact_protocol/ko_realized_jvp_gain_pilot/realized_jvp_candidates_bbb_resnet50_split1001_cand0_nested_selected_nonlogit_avgpool_n25.csv",
+  "metrics": "analysis_outputs/pure_af_geometry/q1_reviewer_validation/exact_protocol/ko_realized_jvp_gain_pilot/realized_jvp_metrics_bbb_resnet50_split1001_cand0_nested_selected_nonlogit_avgpool_n25.csv"
+}

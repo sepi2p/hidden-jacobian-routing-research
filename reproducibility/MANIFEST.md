@@ -8,7 +8,8 @@ This release is locked to the submitted study and contains only its mapped exper
 |---|---|---|
 | Exact CIFAR splits and registries | `create_exact_cifar_splits.py` | `artifacts/splits/` |
 | Nested layer selection | `run_exact_nested_layer_selection.py` | external raw archive; table inputs tracked here |
-| K&O clean-start comparator | `run_exact_ko_cleanstart_comparator.py` | K&O table inputs and `artifacts/analysis_summaries/ko_exact_*.csv` |
+| K&O clean-start comparator | `run_exact_ko_cleanstart_comparator.py`; `summarize_ko_grouped_cv_incremental.py` | K&O table inputs, grouped OOF increments, conditional image-bootstrap intervals, and `artifacts/analysis_summaries/ko_exact_*.csv` |
+| Realized candidate JVP pilot | `run_ko_realized_jvp_gain_pilot.py` | `artifacts/analysis_summaries/ko_realized_jvp_*` |
 | Concentration and held-out separability | `analyze_flow_tube_dimensionality.py`; `analyze_flow_subspace_predictiveness.py` | concentration, layerwise, and separability table inputs |
 | Generic optimization controls | `analyze_cifar_nonadversarial_optimization_controls.py` | non-adversarial-control table input |
 | Objective-neutral mobility and selector | `analyze_cifar_objective_neutral_mobility_flow.py`; `test_mobility_margin_two_stage_selection.py` | mobility and selector table inputs |
@@ -26,7 +27,7 @@ All scripts above are under `experiments/hidden_jacobian_routing/`. Exact paper-
 ## Frozen Inputs and Checks
 
 - `artifacts/table_inputs/`: every numeric table currently referenced by the manuscript, stored as lightweight CSV.
-- `artifacts/analysis_summaries/`: all run-level and grouped values for the exact K&O clean-start comparator.
+- `artifacts/analysis_summaries/`: all run-level and grouped values for the exact K&O clean-start comparator, the corrected image-grouped OOF analysis, conditional image-bootstrap intervals, and the realized-JVP pilot.
 - `artifacts/splits/`: exact CIFAR split and protocol registries.
 - `reproducibility/configs/checkpoint_registry.csv`: checkpoint paths and SHA256 hashes.
 - `reproducibility/SHA256SUMS`: checksums for all tracked release artifacts and registries.

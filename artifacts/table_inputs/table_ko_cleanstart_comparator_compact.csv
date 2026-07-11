@@ -1,5 +1,5 @@
-Model,Layer,Sing.,JVP,Margin,Transport,$\Delta$Tr.
-ResNet50,avgpool,0.333,0.424,0.921,0.892,+0.009
-VGG19-BN,block5,0.282,0.328,0.946,0.709,+0.002
-DenseNet,denseblock3,0.299,0.423,0.949,0.371,+0.001
-Inception-v3,mixed6/mixed7,0.273,0.372,0.965,0.519,+0.002
+Model,Layer,Sing.,SV--rad.,Margin,Transport,$\Delta$Tr. [conditional 95\% CI envelope]
+ResNet50,avgpool,0.333,0.424,0.921,0.892,"+0.009 [0.004, 0.015]"
+VGG19-BN,block5,0.282,0.328,0.946,0.709,"+0.002 [-0.0004, 0.004]"
+DenseNet,denseblock3,0.299,0.423,0.949,0.371,"+0.001 [-0.0005, 0.002]"
+Inception-v3,mixed6/mixed7,0.273,0.372,0.965,0.519,"+0.002 [-0.0004, 0.005]"

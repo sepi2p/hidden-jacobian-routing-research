@@ -1,6 +1,6 @@
-# Hidden-Jacobian Routing and Margin-Based Selection
+# Hidden-Jacobian Mobility in Adversarial Trajectories
 
-This repository contains the research code and reproducibility scaffolding for the empirical study of adversarial search as hidden-Jacobian proposal geometry plus margin-based selection.
+This repository contains the research code and reproducibility scaffolding for a coordinate-level empirical audit of adversarial trajectories against hidden-Jacobian mobility, objective-conditioned candidate evaluation, and finite-step residual motion.
 
 It intentionally does **not** include manuscript source, PDFs, generated paper figures, checkpoints, or dense raw trajectory arrays. The tracked split registries and table-ready summaries provide a lightweight audit layer; the mapped scripts regenerate the larger outputs.
 
@@ -10,8 +10,8 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
-- `artifacts/table_inputs/`: the 35 lightweight numeric table inputs used by the current manuscript.
-- `artifacts/analysis_summaries/`: run-level and aggregated metrics for the exact 60-run clean-start comparator.
+- `artifacts/table_inputs/`: the 36 lightweight numeric table inputs used by the current manuscript.
+- `artifacts/analysis_summaries/`: run-level and aggregated metrics for the exact clean-start comparator, including grouped out-of-fold increments, conditional image-bootstrap intervals, and the realized-JVP pilot.
 - `artifacts/splits/`: exact CIFAR split, model, layer, and attack registries.
 - `reproducibility/`: claim-to-evidence mapping, checkpoint hashes, release metadata, and deterministic checks.
 
@@ -19,7 +19,7 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 
 The repository supports a scoped empirical claim:
 
-> Hidden transport structure in successful adversarial trajectories is largely explained by hidden-Jacobian high-mobility proposal geometry plus margin/gradient-based selection.
+> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion; objective-aware candidate evaluation and finite-step residuals account for additional aspects of attack trajectories.
 
 The road-routing scripts implement a constructive white-box diagnostic: hidden-Jacobian singular directions provide candidate moves, and margin-based selection chooses among them under an \(L_\infty\) budget. The release does not present this diagnostic as a practical or state-of-the-art attack.
 
@@ -72,9 +72,12 @@ python reproducibility/scripts/run_exact_ko_queue.py
 python reproducibility/scripts/summarize_exact_ko.py \
   --input-root analysis_outputs/hidden_jacobian_routing/exact_protocol/phase1a_ko_cleanstart_comparator \
   --output-dir analysis_outputs/hidden_jacobian_routing/exact_protocol/ko_summary
+python experiments/hidden_jacobian_routing/summarize_ko_grouped_cv_incremental.py \
+  --input-root analysis_outputs/hidden_jacobian_routing/exact_protocol/phase1a_ko_cleanstart_comparator \
+  --output-dir analysis_outputs/hidden_jacobian_routing/exact_protocol/ko_grouped_cv_incremental
 ```
 
-The queue skips completed `DONE` shards, so interruption does not discard finished model/seed combinations.
+The queue skips completed `DONE` shards, so interruption does not discard finished model/seed combinations. The grouped-CV script fits standardization and logistic regression inside each image-grouped training fold and predicts held-out image groups only. Its bootstrap intervals are conditional on the fitted OOF models and selected layer; they are not full-pipeline uncertainty intervals.
 
 ## Large Files
 

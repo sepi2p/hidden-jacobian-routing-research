@@ -1,0 +1,7 @@
+model,split_seed,candidate_seed,layer_rule,layer,n_images,n_candidates,n_positive,positive_rate,score,auroc,auprc
+bbb_resnet50,1001,0,nested_selected_nonlogit,avgpool,25,5000,1207,0.2414,singular_value,0.6288740803874752,0.36419485516590466
+bbb_resnet50,1001,0,nested_selected_nonlogit,avgpool,25,5000,1207,0.2414,jvp_proxy_gain,0.7921207710274302,0.5086968477932109
+bbb_resnet50,1001,0,nested_selected_nonlogit,avgpool,25,5000,1207,0.2414,realized_jvp_gain,0.8136764165271088,0.5336033071714891
+bbb_resnet50,1001,0,nested_selected_nonlogit,avgpool,25,5000,1207,0.2414,candidate_mobility,0.981564391388576,0.949296719974936
+bbb_resnet50,1001,0,nested_selected_nonlogit,avgpool,25,5000,1207,0.2414,margin_drop,0.9880816513042054,0.9726794824278711
+bbb_resnet50,1001,0,nested_selected_nonlogit,avgpool,25,5000,1207,0.2414,transport_projection_energy,0.9743022892866575,0.9250885240658363
