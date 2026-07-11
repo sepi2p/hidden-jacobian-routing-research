@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Non-adversarial optimization controls for adversarial success-flow geometry.
+"""Non-adversarial optimization controls for attack-transport geometry.
 
 This experiment asks whether the observed adversarial transport structure is
 specific to successful adversarial optimization or a generic consequence of
@@ -592,7 +592,7 @@ def write_summary_plot(metric_df: pd.DataFrame, overlap_df: pd.DataFrame, out_di
     ax.boxplot(data, labels=[o.replace("_", "\n") for o in order], showfliers=False)
     ax.axhline(0.5, color="black", lw=1, ls="--", alpha=0.6)
     ax.set_ylabel("AUROC")
-    ax.set_title("Adversarial basis separates success-flow from controls")
+    ax.set_title("Adversarial transport basis separates tested controls")
     ax.tick_params(axis="x", labelsize=7)
     if not overlap_df.empty:
         ov = overlap_df[overlap_df["k"] == 20]

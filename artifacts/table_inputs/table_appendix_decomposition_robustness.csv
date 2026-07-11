@@ -1,0 +1,16 @@
+Dataset,Basis,vs random,vs clean,vs failed,Settings
+CIFAR,PCA,0.999,0.824,--,12
+CIFAR,SVD,1.000,0.868,--,12
+CIFAR,Kernel PCA,0.999,0.821,--,12
+CIFAR,FastICA,0.986,0.615,--,12
+CIFAR,Sparse PCA,0.810,0.611,--,12
+CIFAR,Random basis,0.480,0.468,--,12
+CIFAR,Clean-motion PCA,0.986,0.060,--,12
+ImageNet-style,PCA,0.999,0.564,0.465,6
+ImageNet-style,SVD,0.999,0.589,0.465,6
+ImageNet-style,Kernel PCA,0.999,0.562,0.465,6
+ImageNet-style,FastICA,0.992,0.484,0.514,6
+ImageNet-style,Sparse PCA,0.715,0.510,0.438,6
+ImageNet-style,Random basis,0.551,0.532,0.521,6
+ImageNet-style,Clean-motion PCA,0.997,0.082,0.390,6
+ImageNet-style,Failed-motion PCA,0.999,0.321,0.390,3

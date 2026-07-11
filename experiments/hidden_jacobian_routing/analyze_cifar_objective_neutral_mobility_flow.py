@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""Objective-neutral mobility versus adversarial success-flow overlap.
+"""Objective-neutral mobility versus successful attack-transport overlap.
 
-This experiment asks whether adversarial success-flow is an adversarially useful
+This experiment asks whether successful attack transport is an adversarially useful
 subset of high-mobility representation directions.
 
 The explorers ("ants") do not optimize labels, margins, CE, or target classes.
 For each clean image they sample random L_inf sign directions. We then measure:
 
 * representation mobility: ||h(x+delta)-h(x)||;
-* overlap with adversarial success-flow bases learned from PGD/Square;
+* overlap with successful attack-transport bases learned from PGD/Square;
 * post-hoc adversarial outcome, used only for analysis.
 
-If high-mobility directions have higher success-flow energy, and high-flow
+If high-mobility directions have higher attack-transport energy, and high-energy
 random directions are more often adversarial, this supports the interpretation
 that adversarial flows are one useful subset of easy transport channels.
 """
@@ -83,7 +83,7 @@ def build_dataset(root: str):
     return datasets.CIFAR10(root, train=False, download=False, transform=transforms.ToTensor())
 
 
-def load_success_flow_basis(base: Path, seed: int, tag: str, attack: str, layer: str, max_k: int):
+def load_attack_transport_basis(base: Path, seed: int, tag: str, attack: str, layer: str, max_k: int):
     shard_dir = base / "trajectory_shards" / f"seed{seed}" / tag / attack
     metas = sorted(shard_dir.glob("meta_*.csv"))
     if not metas:
@@ -144,7 +144,7 @@ def analyze_checkpoint(args, row, dataset, device):
     basis_cache = {}
     for attack in parse_csv(args.basis_attacks):
         for layer in LAYERS:
-            basis = load_success_flow_basis(base, seed, tag, attack, layer, max_k)
+            basis = load_attack_transport_basis(base, seed, tag, attack, layer, max_k)
             if basis is not None:
                 basis_cache[(attack, layer)] = basis
     if not basis_cache:

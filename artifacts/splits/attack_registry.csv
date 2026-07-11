@@ -1,0 +1,6 @@
+attack,loss,eps_255,steps_or_queries,step_size_255,random_starts,purpose,p_init
+pgd_ce_mixed,ce,2,5,0.5,1,nested_layer_selection,
+pgd_ce20,ce,8,20,,1,full_budget_trajectory,
+apgd_ce50,ce,8,50,,1,full_budget_trajectory,
+apgd_dlr50,dlr,8,50,,1,full_budget_trajectory,
+square5000,ce_margin,8,5000,,0,full_budget_trajectory,0.8

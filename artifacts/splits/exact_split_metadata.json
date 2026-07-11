@@ -1,0 +1,32 @@
+{
+  "dataset": "CIFAR-10 test",
+  "dataset_root": "data/cifar10",
+  "per_class": 100,
+  "n_per_model": 1000,
+  "split_rule": "within each class, shuffle selected clean-correct pool with split_seed; assign 40 basis_fit, 20 layer_validation, 40 final_test",
+  "split_seeds": [
+    1001,
+    1002,
+    1003
+  ],
+  "candidate_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "bootstrap_seed": 12345,
+  "bootstrap_resamples": 10000,
+  "primary_k": 20,
+  "k_sensitivity": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "trajectory_schema": {
+    "local_step": "h_l(x_{t+1}) - h_l(x_t)",
+    "cumulative_displacement": "h_l(x_t) - h_l(x_0)"
+  }
+}

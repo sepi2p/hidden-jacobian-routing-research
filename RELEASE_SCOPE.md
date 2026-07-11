@@ -8,7 +8,7 @@ The repository includes:
 - helper scripts imported by those mapped experiments;
 - the Square Attack probability schedule used by the query-search experiments;
 - CIFAR-10 model definitions for the architectures evaluated in the paper;
-- lightweight reproducibility manifests and environment files.
+- lightweight reproducibility manifests, exact aggregate summaries, and environment files.
 
 The repository intentionally excludes:
 
@@ -22,4 +22,4 @@ The final scientific framing is:
 
 > Hidden-Jacobian mobility proposes feasible high-motion directions, and margin/gradient dynamics select adversarially useful directions under budget.
 
-Large artifacts must be distributed outside Git, for example through a GitHub Release, Zenodo, OSF, or another archival service.
+The tracked artifact bundle contains only lightweight table-ready summaries, exact clean-start run summaries, split registries, and checksums. Raw trajectories, checkpoints, and dense arrays are regenerated with the mapped scripts and are not committed to Git.

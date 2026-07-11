@@ -1,0 +1,13 @@
+Model,Layer,\(k\),Raw overlap,Whitened overlap,Random overlap
+ResNet50,layer4,5,0.756,0.207,0.002
+ResNet50,layer4,10,0.971,0.230,0.005
+ResNet50,layer4,20,0.792,0.294,0.010
+VGG19-BN,block5,5,0.752,0.299,0.010
+VGG19-BN,block5,10,0.906,0.485,0.020
+VGG19-BN,block5,20,0.908,0.596,0.039
+DenseNet,denseblock3,5,0.370,0.060,0.002
+DenseNet,denseblock3,10,0.536,0.096,0.005
+DenseNet,denseblock3,20,0.689,0.200,0.009
+Inception-v3,mixed6,5,0.852,0.151,0.007
+Inception-v3,mixed6,10,0.888,0.229,0.013
+Inception-v3,mixed6,20,0.840,0.303,0.026

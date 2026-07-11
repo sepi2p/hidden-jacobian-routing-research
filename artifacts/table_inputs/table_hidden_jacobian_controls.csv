@@ -1,0 +1,10 @@
+Diagnostic,Metric,Value
+Small-probe mobility vs JVP gain,Spearman correlation,"0.965 [0.942, 0.979]"
+Small-probe finite-difference vs JVP direction,Median cosine,"0.970 [0.962, 0.976]"
+Transport basis vs JVP-sketch basis,Overlap@5,0.756
+Transport basis vs JVP-sketch basis,Overlap@10,0.971
+Transport basis vs JVP-sketch basis,Overlap@20,0.792
+PGD local hidden step vs $J_h(x_t)\Delta x_t$,Median cosine,"0.936 [0.933, 0.943]"
+"Square checkpoint displacement vs JVP, early",Median cosine,"0.762 [0.729, 0.808]"
+"Square checkpoint displacement vs JVP, late",Median cosine,"0.916 [0.896, 0.935]"
+Residual candidate prediction after margin+gradient+JVP,AUPRC gain,$-0.030$--$0.008$

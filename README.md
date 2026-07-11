@@ -2,23 +2,26 @@
 
 This repository contains the research code and reproducibility scaffolding for the empirical study of adversarial search as hidden-Jacobian proposal geometry plus margin-based selection.
 
-It intentionally does **not** include the manuscript source, PDFs, generated paper figures, or large raw artifacts. Large outputs should be released separately, for example through Zenodo, OSF, Hugging Face Datasets, or a GitHub Release asset.
+It intentionally does **not** include manuscript source, PDFs, generated paper figures, checkpoints, or dense raw trajectory arrays. The tracked split registries and table-ready summaries provide a lightweight audit layer; the mapped scripts regenerate the larger outputs.
 
 ## What This Repo Contains
 
-- `experiments/hidden_jacobian_routing/`: paper experiment and analysis scripts for transport concentration, mobility/JVP controls, selector analyses, matched interventions, trajectory-road probes, and the white-box road-routing attack.
+- `experiments/hidden_jacobian_routing/`: experiment and analysis scripts for transport concentration, exact clean-start comparison, mobility/JVP controls, selector analyses, coordinate stress tests, matched interventions, supporting pilots, and the white-box road-routing diagnostic.
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
-- `reproducibility/`: manifests, environment file, and artifact checks.
+- `artifacts/table_inputs/`: the 35 lightweight numeric table inputs used by the current manuscript.
+- `artifacts/analysis_summaries/`: run-level and aggregated metrics for the exact 60-run clean-start comparator.
+- `artifacts/splits/`: exact CIFAR split, model, layer, and attack registries.
+- `reproducibility/`: claim-to-evidence mapping, checkpoint hashes, release metadata, and deterministic checks.
 
 ## Core Scientific Claim
 
 The repository supports a scoped empirical claim:
 
-> Apparent hidden transport structure in successful adversarial trajectories is best explained as hidden-Jacobian high-mobility proposal geometry plus margin/gradient-based selection, not as a distinct adversarial-only flow.
+> Hidden transport structure in successful adversarial trajectories is largely explained by hidden-Jacobian high-mobility proposal geometry plus margin/gradient-based selection.
 
-The road-routing scripts implement the paper's constructive white-box attack: hidden-Jacobian singular directions provide the candidate roads, and margin-based selection chooses the adversarially useful route under an \(L_\infty\) budget.
+The road-routing scripts implement a constructive white-box diagnostic: hidden-Jacobian singular directions provide candidate moves, and margin-based selection chooses among them under an \(L_\infty\) budget. The release does not present this diagnostic as a practical or state-of-the-art attack.
 
 ## Access Models
 
@@ -36,18 +39,42 @@ conda activate hidden-jacobian-routing
 If using an existing environment, install the standard scientific Python and PyTorch stack:
 
 ```bash
-pip install numpy pandas scipy scikit-learn matplotlib seaborn tqdm pillow pyyaml torch torchvision
+pip install numpy pandas scipy scikit-learn matplotlib seaborn tqdm pillow pyyaml torch torchvision robustbench timm
 ```
 
 ## Artifact Check
 
-After downloading external artifacts into their expected locations:
+The tracked release can be audited without downloading raw trajectories:
 
 ```bash
 bash reproducibility/scripts/check_required_artifacts.sh
+make smoke
+make tables
+make verify-checksums
 ```
 
-The checker validates only the core released research artifacts. It does not build the paper.
+`make tables` regenerates table-ready tabular files under `generated/tables/`. The repository does not build or contain the manuscript.
+
+## Exact Clean-Start Comparator
+
+The promoted CIFAR protocol is resumable and uses the tracked 40/20/40 splits:
+
+```bash
+python experiments/hidden_jacobian_routing/create_exact_cifar_splits.py
+for model in bbb_resnet50 bbb_vgg19_bn bbb_densenet bbb_inception_v3; do
+  for seed in 1001 1002 1003; do
+    python experiments/hidden_jacobian_routing/run_exact_nested_layer_selection.py \
+      --model "$model" --split-seed "$seed" \
+      --output-dir "analysis_outputs/hidden_jacobian_routing/exact_protocol/phase1_nested_layer_selection/$model/split_seed_$seed"
+  done
+done
+python reproducibility/scripts/run_exact_ko_queue.py
+python reproducibility/scripts/summarize_exact_ko.py \
+  --input-root analysis_outputs/hidden_jacobian_routing/exact_protocol/phase1a_ko_cleanstart_comparator \
+  --output-dir analysis_outputs/hidden_jacobian_routing/exact_protocol/ko_summary
+```
+
+The queue skips completed `DONE` shards, so interruption does not discard finished model/seed combinations.
 
 ## Large Files
 
@@ -59,14 +86,8 @@ The following are intentionally excluded from Git:
 - `*.npz`, `*.pt`, `*.pth`, `*.ckpt`
 - generated figures/PDFs/images
 
-Distribute large artifacts outside Git, for example through a GitHub Release, Zenodo, OSF, or another archival service.
+Large outputs can be regenerated with the mapped scripts; the tracked summaries and checksums provide the lightweight audit layer used by the paper.
 
-## Public Release Status
+## Release Boundary
 
-This public repository contains the source code, manifests, and lightweight documentation needed to inspect and rerun the research pipeline. Large generated artifacts and model checkpoints are intentionally distributed outside Git.
-
-Current artifact policy:
-
-1. Source code and reproducibility scaffolding are tracked here.
-2. Large outputs, checkpoints, logs, and generated figures remain outside Git history.
-3. External artifact bundles should include checksums and should satisfy `bash reproducibility/scripts/check_required_artifacts.sh` after download.
+The repository contains the exact scripts, frozen lightweight table inputs, exact split registries, and model hashes needed to audit the submitted results. It excludes manuscript files, abandoned experiments, unrelated attacks, checkpoints, raw trajectories, and generated media.

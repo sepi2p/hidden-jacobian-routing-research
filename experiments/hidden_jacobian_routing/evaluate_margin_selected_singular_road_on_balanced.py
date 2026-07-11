@@ -166,7 +166,7 @@ def main():
         "--balanced-dir",
         default="analysis_outputs/hidden_jacobian_routing/jacobian_null_response/balanced_full_bbb_resnet50_c200_auto",
     )
-    p.add_argument("--dataset-root", default="/home/sepi/data/cifar10")
+    p.add_argument("--dataset-root", default="data/cifar10")
     p.add_argument(
         "--output-dir",
         default="analysis_outputs/hidden_jacobian_routing/margin_selected_singular_road_balanced_resnet50_c200",

@@ -1,46 +1,23 @@
 # Experiment Registry
 
-This registry records the experiments that support the main paper. Large checkpoints and raw outputs are external artifacts; this file records the model, layer, and experiment conventions expected by the public code release.
+## Primary Protocol
 
-## Common Dataset and Model Conventions
+- Dataset: CIFAR-10 clean-correct images.
+- Natural models: `bbb_resnet50`, `bbb_vgg19_bn`, `bbb_densenet`, `bbb_inception_v3`.
+- Exact split seeds: `1001`, `1002`, `1003`; split fractions: 40% basis fit, 20% layer validation, 40% final test.
+- K&O candidate seeds: `0,1,2,3,4`; `k=20`; 12 power iterations; tolerance `1e-4`; signs `+/-`; step grid `1,2,4,6,8 / 255`.
+- Small-probe JVP comparison: `epsilon=2/255`, probe `0.125/255`.
+- Finite-budget diagnostic: PGD-CE20 and controlled APGD-style CE/DLR50 at `epsilon in {1,2}/255`.
+- Bootstrap unit: image ID unless a caption explicitly labels a fitted-basis point estimate.
 
-- Dataset: CIFAR-10 test images unless otherwise stated.
-- Main clean-correct filtering: use images correctly classified by all models involved in the comparison.
-- Main perturbation norm: \(L_\infty\).
-- White-box road-routing benchmark: `bbb_resnet50`, `bbb_vgg19_bn`, `bbb_densenet`, and `bbb_inception_v3`.
-- Road-routing access model: white-box hidden activations, logits, gradients, and JVP/VJP operations.
+The exact image rows, model registry, layer registry, and attack registry are tracked in `artifacts/splits/`.
+`artifacts/splits/model_registry.csv` hashes the loaded model state after wrapping; `checkpoint_registry.csv` hashes the checkpoint files on disk. The two hashes intentionally measure different objects.
 
-## Model Registry
+## Supporting Pilots
 
-| Model id | Architecture | Checkpoint artifact | Preprocessing | Eval mode |
-|---|---|---|---|---|
-| `bbb_resnet50` | ResNet50, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
-| `bbb_vgg19_bn` | VGG19-BN, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
-| `bbb_densenet` | DenseNet, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
-| `bbb_inception_v3` | Inception-v3, CIFAR-10 | External checkpoint bundle | BlackboxBench CIFAR-10 preprocessing | `model.eval()` |
+- ImageNet: 200 clean-correct validation images/model; ResNet50, ConvNeXt-Tiny, ViT-B/16; benchmark Square5000 at `4/255`. This tests attack-versus-random separation, not the full mechanism.
+- RobustBench: 200 clean-correct CIFAR-10 images/model; Wong2020Fast, Engstrom2019Robustness, Addepalli2022Efficient_RN18; official APGD sanity checks plus local FD/JVP probes. This tests persistence of local mobility, not the full iterative mechanism.
 
-## Layer Registry
+## Access Scope
 
-| Model id | Hidden layer used in mechanism tests | Penultimate | Logits |
-|---|---|---|---|
-| `bbb_resnet50` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
-| `bbb_vgg19_bn` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
-| `bbb_densenet` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
-| `bbb_inception_v3` | Registered hidden hook in the artifact metadata | Registered penultimate hook in the artifact metadata | Classifier output |
-
-## Main Experiment Families
-
-| Family | Main script(s) | Output directory | Main manuscript use |
-|---|---|---|---|
-| Initial concentration/separability | `experiments/hidden_jacobian_routing/analyze_flow_tube_dimensionality.py`, `experiments/hidden_jacobian_routing/analyze_flow_subspace_predictiveness.py` | `analysis_outputs/hidden_jacobian_routing/` | Sections 3--5 |
-| Objective-neutral mobility | `experiments/hidden_jacobian_routing/analyze_cifar_objective_neutral_mobility_flow.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
-| Mobility versus margin selector | `experiments/hidden_jacobian_routing/test_mobility_margin_two_stage_selection.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
-| JVP mechanism controls | `experiments/hidden_jacobian_routing/test_mobility_vs_jacobian_gain.py`, `experiments/hidden_jacobian_routing/test_jacobian_basis_and_residual_transport.py`, `experiments/hidden_jacobian_routing/test_clean_whitened_mobility_jvp.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism section |
-| Matched pullback interventions | `experiments/hidden_jacobian_routing/run_matched_jacobian_intervention_controls.py` | `analysis_outputs/hidden_jacobian_routing/` | Intervention section |
-| Road tracing diagnostics | `experiments/hidden_jacobian_routing/trace_jacobian_singular_roads.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism/appendix |
-| White-box road-routing attack | `experiments/hidden_jacobian_routing/benchmark_multimodel_road_routing.py`, `experiments/hidden_jacobian_routing/benchmark_whitebox_road_routing.py`, `experiments/hidden_jacobian_routing/evaluate_topk_margin_selected_singular_roads_on_balanced.py` | `analysis_outputs/hidden_jacobian_routing/` | Road-routing section |
-| Road-map figures | `experiments/hidden_jacobian_routing/plot_hidden_jacobian_road_map.py`, `experiments/hidden_jacobian_routing/plot_margin_selected_singular_road_vs_pgd.py` | `analysis_outputs/hidden_jacobian_routing/` | Mechanism figures |
-
-## External Artifact Metadata
-
-Full artifact bundles should include checkpoint hashes, exact module hook names, GPU metadata, wall-clock times, and image-id lists for all train/test splits. These details are treated as artifact metadata rather than Git-tracked large outputs.
+Mechanism, pullback, and road-routing experiments are white-box. The road-routing procedure is a constructive diagnostic and is not claimed as a practical or state-of-the-art attack.

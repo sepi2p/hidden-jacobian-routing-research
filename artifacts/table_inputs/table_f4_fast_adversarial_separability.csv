@@ -1,0 +1,4 @@
+Comparison,AUROC,"Mean $E_{20}$, success","Mean $E_{20}$, comparison"
+Adv. success vs. failed adv.,0.757,0.601,0.504
+Adv. success vs. clean-preserving,0.788,0.601,0.462
+Adv. success vs. random,1.000,0.601,0.020

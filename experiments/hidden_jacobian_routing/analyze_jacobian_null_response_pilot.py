@@ -2,7 +2,7 @@
 """Pilot tests for the hidden-Jacobian / realizable-control null hypothesis.
 
 This script is intentionally confirmatory rather than pretty.  It asks whether
-the current "adversarial success-flow" signal survives the strongest immediate
+the measured attack-transport signal survives the strongest immediate
 criticisms:
 
 1. ambient feature-space random vectors are a weak null;
@@ -870,7 +870,7 @@ def write_decision_summary(out_dir: Path, metrics: pd.DataFrame, overlaps: pd.Da
                     f"- {r.basis_source} vs {r.other_source}, {r.layer}: overlap={r.projection_overlap:.3f}, angle={r.mean_principal_angle_deg:.1f} deg"
                 )
             if (jac["projection_overlap"] > 0.5).any():
-                flags.append("Success-flow has high overlap with at least one Jacobian probe basis.")
+                flags.append("Successful transport has high overlap with at least one Jacobian probe basis.")
     if not sim.empty:
         ps = sim[(sim.source_a == "pgd") & (sim.source_b == "square")]
         if ps.empty:

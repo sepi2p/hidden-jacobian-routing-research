@@ -1,0 +1,17 @@
+Model,Transform,dim80,Eff. rank,AUROC,$\Delta$ AUROC,JVP overlap@10
+ResNet50,Identity,7,11.1,0.877,+0.000,0.869
+ResNet50,Permutation,7,11.1,0.877,+0.000,0.869
+ResNet50,Std. channels,7,12.2,0.885,+0.008,0.894
+ResNet50,Lognormal scale $\sigma=2$,3,4.3,0.735,-0.142,0.894
+VGG19-BN,Identity,7,11.5,0.656,+0.000,0.834
+VGG19-BN,Permutation,7,11.5,0.656,-0.000,0.834
+VGG19-BN,Std. channels,6,9.4,0.644,-0.012,0.844
+VGG19-BN,Lognormal scale $\sigma=2$,1,1.5,0.543,-0.113,0.915
+DenseNet,Identity,11,20.0,0.697,+0.000,0.396
+DenseNet,Permutation,11,20.0,0.697,+0.000,0.396
+DenseNet,Std. channels,21,25.7,0.526,-0.172,0.419
+DenseNet,Lognormal scale $\sigma=2$,8,12.8,0.616,-0.081,0.543
+Inception-v3,Identity,28,41.1,0.619,+0.000,0.696
+Inception-v3,Permutation,28,41.1,0.619,+0.000,0.696
+Inception-v3,Std. channels,34,48.2,0.629,+0.011,0.642
+Inception-v3,Lognormal scale $\sigma=2$,5,7.9,0.628,+0.009,0.880

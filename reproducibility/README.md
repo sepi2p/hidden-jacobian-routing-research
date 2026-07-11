@@ -1,41 +1,11 @@
-# Reproducibility Notes
+# Reproducing the Submitted Results
 
-This directory documents how to reproduce the research artifacts without storing the manuscript, PDFs, or generated paper figures in Git.
+1. Create the environment with `conda env create -f environment.yml`.
+2. Place CIFAR checkpoints at the paths in `reproducibility/configs/checkpoint_registry.csv` and verify their SHA256 hashes.
+3. Run `make smoke` and `make verify-checksums`.
+4. Run `make tables` to rebuild all table-ready LaTeX tabular files from the frozen CSV inputs.
+5. Use `reproducibility/configs/claim_evidence_map.csv` to locate the producer for each paper figure or table.
+6. Inspect `artifacts/analysis_summaries/ko_exact_run_metrics.csv` for all 105 layer-rule measurements underlying the exact clean-start comparator.
+7. For a full rerun, regenerate the relevant block with the mapped producer script and registered checkpoints.
 
-## What the Scripts Do
-
-- `scripts/check_required_artifacts.sh` checks whether externally downloaded summary artifacts are present.
-- `configs/experiment_registry.md` records model IDs, checkpoint hashes, layer hooks, and experiment families.
-- `configs/research_artifact_manifest.csv` records the logical mapping from research outputs to summary artifacts. It is a manifest, not a paper build script.
-
-## What Is Excluded
-
-The Git repository intentionally excludes:
-
-- manuscript source;
-- paper PDFs;
-- generated figure images;
-- raw trajectory NPZ files;
-- model checkpoints;
-- large CSV logs;
-- attack logs.
-
-Distribute external artifacts separately with download URLs and checksums. The script `scripts/check_required_artifacts.sh` validates the expected file layout after download.
-
-## Reproducibility Levels
-
-**Level 1: Summary-artifact audit**
-
-Download summary CSV/JSON/MD artifacts and run:
-
-```bash
-bash reproducibility/scripts/check_required_artifacts.sh
-```
-
-**Level 2: Experiment rerun**
-
-Run the experiment scripts listed in `configs/experiment_registry.md`. Expensive runs include JVP sketches, matched interventions, trajectory extraction, and white-box road-routing benchmarks.
-
-**Level 3: Full raw rerun**
-
-Requires public model checkpoints, image-id lists, exact layer hooks, and sufficient GPU time. This is expected to be substantially more expensive than Level 1.
+The Git repository intentionally excludes manuscript files, PDFs, checkpoints, raw trajectory arrays, and unrelated research scripts.

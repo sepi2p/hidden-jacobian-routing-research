@@ -1,37 +1,44 @@
-# Research Artifact Manifest
+# Reproducibility Manifest
 
-This manifest maps paper components to the scripts retained in this public code release. It deliberately avoids manuscript/PDF files and excludes scripts that are not part of the paper.
+This release is locked to the submitted study and contains only its mapped experiments and lightweight audit artifacts.
 
-## Core Mechanism Scripts
+## Promoted Pipelines
 
-| Component | Purpose | Main scripts | Expected external outputs |
-|---|---|---|---|
-| Initial transport concentration | Measure concentration of successful hidden displacements | `experiments/hidden_jacobian_routing/analyze_flow_tube_dimensionality.py` | dimensionality CSVs |
-| Success/failure separability | Held-out projection-energy tests | `experiments/hidden_jacobian_routing/analyze_flow_subspace_predictiveness.py` | projection-energy metrics CSVs |
-| Non-adversarial controls | Compare attack transport to generic representation optimization | `experiments/hidden_jacobian_routing/analyze_cifar_nonadversarial_optimization_controls.py` | non-adversarial control summary CSVs |
-| Objective-neutral mobility | Test whether label-free high-mobility directions overlap transport coordinates | `experiments/hidden_jacobian_routing/analyze_cifar_objective_neutral_mobility_flow.py` | mobility summary CSVs |
-| Mobility versus margin selection | Test proposal/selection decomposition | `experiments/hidden_jacobian_routing/test_mobility_margin_two_stage_selection.py`, `experiments/hidden_jacobian_routing/summarize_two_stage_mobility_margin_sweep.py` | selector sweep CSVs |
-| Hidden-Jacobian controls | Compare finite-difference mobility, exact JVP gain, and JVP-sketch bases | `experiments/hidden_jacobian_routing/test_mobility_vs_jacobian_gain.py`, `experiments/hidden_jacobian_routing/test_jacobian_basis_and_residual_transport.py`, `experiments/hidden_jacobian_routing/test_clean_whitened_mobility_jvp.py` | JVP/mobility/residual summaries |
-| Attack-step JVP linearization | Compare recorded attack hidden steps with local JVP predictions | `experiments/hidden_jacobian_routing/test_actual_trajectory_jvp_linearization.py` | actual-step JVP summary CSVs |
-| Matched pullback interventions | Compare transport PCs with JVP, failed-attack, residual, and matched-random bases | `experiments/hidden_jacobian_routing/run_matched_jacobian_intervention_controls.py` | intervention summary CSVs |
-| Sign/time optimizer comparison | Compare successful PGD/Square hidden trajectories under sign- and time-sensitive metrics | `experiments/hidden_jacobian_routing/analyze_sign_time_optimizer_similarity.py` | optimizer-signature summary CSVs |
-| Road tracing diagnostics | Trace high-mobility hidden-Jacobian roads as integral curves | `experiments/hidden_jacobian_routing/trace_jacobian_singular_roads.py` | road tracing CSVs |
-| White-box road-routing attack | Benchmark margin-selected hidden-Jacobian road routing against PGD/APGD/FAB-style baselines | `experiments/hidden_jacobian_routing/benchmark_whitebox_road_routing.py`, `experiments/hidden_jacobian_routing/benchmark_multimodel_road_routing.py`, `experiments/hidden_jacobian_routing/evaluate_topk_margin_selected_singular_roads_on_balanced.py` | road-routing per-image and summary CSVs |
-| Road-routing figures | Rebuild the paper's hidden-Jacobian road-map visualizations from saved or recomputed traces | `experiments/hidden_jacobian_routing/plot_hidden_jacobian_road_map.py`, `experiments/hidden_jacobian_routing/plot_margin_selected_singular_road_vs_pgd.py`, `experiments/hidden_jacobian_routing/plot_objective_neutral_mobility_selector_figure.py` | road-map and mobility-selector figures |
-| Training dynamics / seed support | Support appendix checks on recurrence across independently trained ResNet18 checkpoints | `experiments/hidden_jacobian_routing/run_cifar_training_dynamics_transport.py` | checkpoint transport summaries |
+| Evidence block | Script | Frozen lightweight artifact |
+|---|---|---|
+| Exact CIFAR splits and registries | `create_exact_cifar_splits.py` | `artifacts/splits/` |
+| Nested layer selection | `run_exact_nested_layer_selection.py` | external raw archive; table inputs tracked here |
+| K&O clean-start comparator | `run_exact_ko_cleanstart_comparator.py` | K&O table inputs and `artifacts/analysis_summaries/ko_exact_*.csv` |
+| Concentration and held-out separability | `analyze_flow_tube_dimensionality.py`; `analyze_flow_subspace_predictiveness.py` | concentration, layerwise, and separability table inputs |
+| Generic optimization controls | `analyze_cifar_nonadversarial_optimization_controls.py` | non-adversarial-control table input |
+| Objective-neutral mobility and selector | `analyze_cifar_objective_neutral_mobility_flow.py`; `test_mobility_margin_two_stage_selection.py` | mobility and selector table inputs |
+| Attack-step selection diagnostic | `analyze_attack_road_selection_diagnostic.py` | proposal-summary table inputs |
+| Local hidden-Jacobian mechanism | `test_mobility_vs_jacobian_gain.py`; `test_jacobian_basis_and_residual_transport.py`; `test_clean_whitened_mobility_jvp.py` | JVP and overlap table inputs |
+| Finite-budget JVP/residual analysis | `run_finite_budget_jvp_residual.py`; `test_actual_trajectory_jvp_linearization.py` | finite-budget and recorded-step table inputs |
+| Coordinate dependence | `run_function_preserving_coordinate_rescaling.py`; `analyze_decomposition_sensitivity.py` | coordinate-stress table inputs |
+| Matched pullback activity | `run_matched_jacobian_intervention_controls.py` | intervention table inputs |
+| Routing diagnostics | `run_same_harness_routing_efficiency.py`; `benchmark_multimodel_road_routing.py` | routing table inputs |
+| ImageNet supporting pilot | `run_imagenet_supporting_pilot.py` | ImageNet pilot table input |
+| RobustBench local-mobility pilot | `run_robustbench_local_mobility_pilot.py` | RobustBench pilot table input |
 
-## Helper Modules
+All scripts above are under `experiments/hidden_jacobian_routing/`. Exact paper-item mappings are in `reproducibility/configs/claim_evidence_map.csv`.
 
-| Helper | Purpose |
-|---|---|
-| `experiments/hidden_jacobian_routing/common.py` | Shared layer hooks, margins, projections, model loading wrappers, and Square trajectory helper |
-| `experiments/hidden_jacobian_routing/analyze_jacobian_null_response_pilot.py` | Balanced trajectory generation and PGD helper reused by JVP analyses |
-| `attacks/square.py` | Square Attack probability schedule |
+## Frozen Inputs and Checks
 
-## Expensive Outputs Not Stored in Git
+- `artifacts/table_inputs/`: every numeric table currently referenced by the manuscript, stored as lightweight CSV.
+- `artifacts/analysis_summaries/`: all run-level and grouped values for the exact K&O clean-start comparator.
+- `artifacts/splits/`: exact CIFAR split and protocol registries.
+- `reproducibility/configs/checkpoint_registry.csv`: checkpoint paths and SHA256 hashes.
+- `reproducibility/SHA256SUMS`: checksums for all tracked release artifacts and registries.
 
-- model checkpoints;
-- raw trajectory segment vectors;
-- full per-query traces;
-- dense JVP sketch matrices;
-- raw image samples and generated visualizations.
+Run:
+
+```bash
+make smoke
+make tables
+make verify-checksums
+```
+
+## External Raw Archive
+
+Raw trajectories, dense arrays, checkpoints, and per-query logs are intentionally outside Git. The frozen table inputs, exact splits, checkpoint hashes, and mapped scripts form the tracked audit layer.

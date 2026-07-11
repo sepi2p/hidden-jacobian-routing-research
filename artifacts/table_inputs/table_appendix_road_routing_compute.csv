@@ -1,0 +1,21 @@
+Model,Method,Layer,Deriv.-equiv.,Cand. forwards,Runtime (s)
+ResNet50,PGD-20,layer4,20,0,3.4
+ResNet50,FAB-100,layer4,1000,0,171.2
+ResNet50,APGD-CE-20,layer4,20,0,3.7
+ResNet50,APGD-DLR-20,layer4,20,0,3.8
+ResNet50,Road-routing,layer4,120,200,323.4
+VGG19-BN,PGD-20,block5,20,0,0.8
+VGG19-BN,FAB-100,block5,1000,0,47.4
+VGG19-BN,APGD-CE-20,block5,20,0,0.9
+VGG19-BN,APGD-DLR-20,block5,20,0,1.0
+VGG19-BN,Road-routing,block5,120,200,151.4
+DenseNet,PGD-20,denseblock3,20,0,33.6
+DenseNet,FAB-100,denseblock3,1000,0,1746.2
+DenseNet,APGD-CE-20,denseblock3,20,0,36.2
+DenseNet,APGD-DLR-20,denseblock3,20,0,36.8
+DenseNet,Road-routing,penultimate,120,200,1393.7
+Inception-v3,PGD-20,mixed6,20,0,9.4
+Inception-v3,FAB-100,mixed6,1000,0,537.1
+Inception-v3,APGD-CE-20,mixed6,20,0,10.3
+Inception-v3,APGD-DLR-20,mixed6,20,0,10.7
+Inception-v3,Road-routing,mixed7,120,200,588.9

@@ -319,7 +319,7 @@ def smooth_vector_field(starts: np.ndarray, deltas: np.ndarray, nx: int = 28, ny
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--output-dir", default="analysis_outputs/hidden_jacobian_routing/hidden_jacobian_road_map")
-    p.add_argument("--dataset-root", default="/home/sepi/data/cifar10")
+    p.add_argument("--dataset-root", default="data/cifar10")
     p.add_argument("--clean-offset", type=int, default=0)
     p.add_argument("--many-images", type=int, default=20)
     p.add_argument("--steps-single", type=int, default=8)

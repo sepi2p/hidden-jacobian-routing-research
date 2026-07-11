@@ -1,0 +1,6 @@
+selector,top1,top5,top10,label
+Random,7.0,20.0,24.5,random
+Mobility,20.5,30.5,33.0,mobility
+Margin,22.0,32.0,33.0,margin
+Mobility x margin,23.5,32.5,34.0,"mobility
+x margin"

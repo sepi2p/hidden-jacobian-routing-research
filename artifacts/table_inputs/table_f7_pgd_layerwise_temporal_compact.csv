@@ -1,0 +1,5 @@
+Model,Layer,Step 1,Step 2,Step 3,Step 4,Step 5
+ResNet50,layer4,0.841,0.915,0.942,0.762,0.354
+VGG19-BN,block5,0.645,0.845,0.840,0.750,0.560
+DenseNet,denseblock3,0.693,0.784,0.824,0.653,0.619
+Inception-v3,mixed6,0.750,0.958,0.963,0.944,0.829

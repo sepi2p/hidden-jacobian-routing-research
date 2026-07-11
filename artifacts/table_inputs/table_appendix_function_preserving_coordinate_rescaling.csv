@@ -1,0 +1,9 @@
+Model/layer,Transform,dim80,dim90,Eff. rank,AUROC,max $|\Delta f|$
+ResNet50 / avgpool,Identity,7,9,13.6,0.876,0.00e+00
+ResNet50 / avgpool,Diag. $\sigma=0.5$,7,9,13.5,0.875,1.91e-06
+ResNet50 / avgpool,Diag. $\sigma=1$,6,9,11.6,0.856,1.91e-06
+ResNet50 / avgpool,Diag. $\sigma=2$,3,5,4.8,0.770,1.91e-06
+VGG19-BN / penult.,Identity,7,9,11.2,0.622,0.00e+00
+VGG19-BN / penult.,Diag. $\sigma=0.5$,6,8,10.2,0.678,1.91e-06
+VGG19-BN / penult.,Diag. $\sigma=1$,5,7,8.0,0.552,1.91e-06
+VGG19-BN / penult.,Diag. $\sigma=2$,1,1,1.2,0.304,1.91e-06

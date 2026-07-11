@@ -1,0 +1,11 @@
+Basis,Stage,"$\rho(m,E)$",AUROC$_{hi/lo}$,Low-energy ASR,High-energy ASR,Adv AUROC
+PGD,init\_or\_random,0.626,0.932,3.3,2.7,0.500
+PGD,early,0.694,0.944,1.1,1.9,0.546
+PGD,middle,0.690,0.949,2.0,7.3,0.658
+PGD,late,0.584,0.921,7.9,21.4,0.608
+PGD,mature,0.686,0.954,3.5,28.5,0.745
+Square,init\_or\_random,0.659,0.944,5.2,3.8,0.486
+Square,early,0.601,0.887,1.2,2.2,0.558
+Square,middle,0.615,0.913,2.2,6.5,0.636
+Square,late,0.549,0.894,7.4,23.7,0.623
+Square,mature,0.591,0.903,4.4,29.7,0.733

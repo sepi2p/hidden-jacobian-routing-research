@@ -19,3 +19,5 @@ dependencies:
   - torchvision
   - pip:
       - autoattack
+      - robustbench
+      - timm

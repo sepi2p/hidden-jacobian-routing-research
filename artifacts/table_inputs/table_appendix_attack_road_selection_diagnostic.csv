@@ -1,0 +1,7 @@
+Attack/proposal,Group,\(n\),Median \(\Delta M_y\),Median mobility,Median road cos.,Top-1 align (\%),Helpful (\%)
+APGD-style CE,update,600,0.511,4.603,0.415,40.7,68.3
+NES samples,all samples,3648,-0.041,0.263,0.028,21.7,38.5
+NES update,update,304,0.320,0.612,0.033,25.7,80.3
+Square proposals,all proposals,2315,-0.743,1.132,0.022,34.2,11.3
+Square proposals,accepted,261,0.176,0.664,0.017,21.5,100.0
+Square proposals,rejected,2054,-0.940,1.217,0.023,35.8,0.0

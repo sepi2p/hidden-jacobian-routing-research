@@ -163,7 +163,7 @@ def main():
         "--balanced-dir",
         default="analysis_outputs/hidden_jacobian_routing/jacobian_null_response/balanced_full_bbb_resnet50_c200_auto",
     )
-    p.add_argument("--dataset-root", default="/home/sepi/data/cifar10")
+    p.add_argument("--dataset-root", default="data/cifar10")
     p.add_argument("--output-dir", default="analysis_outputs/hidden_jacobian_routing/k2_margin_selected_roads_by_layer_resnet50_c200")
     p.add_argument("--layers", default="layer1,layer2,layer3,layer4,logits")
     p.add_argument("--k", type=int, default=2)

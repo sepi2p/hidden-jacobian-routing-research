@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Build a clearer Figure 7 for objective-neutral mobility and margin selection.
-
-The figure is generated from the LaTeX tables used in the manuscript so that
-the visual values match the reported bootstrap-rounded table values.
-"""
+"""Build the objective-neutral mobility and margin-selection figure."""
 
 from __future__ import annotations
 
@@ -39,6 +35,8 @@ def first_number(cell: str) -> float:
 
 
 def parse_mobility_table(path: Path) -> pd.DataFrame:
+    if path.suffix == ".csv":
+        return pd.read_csv(path)
     rows = []
     for line in path.read_text().splitlines():
         if "transport" not in line or "&" not in line:
@@ -61,6 +59,8 @@ def parse_mobility_table(path: Path) -> pd.DataFrame:
 
 
 def parse_selector_table(path: Path) -> pd.DataFrame:
+    if path.suffix == ".csv":
+        return pd.read_csv(path)
     rows = []
     for line in path.read_text().splitlines():
         if "&" not in line or any(skip in line for skip in ("toprule", "midrule", "bottomrule", "Selector")):
@@ -81,8 +81,8 @@ def parse_selector_table(path: Path) -> pd.DataFrame:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--mobility-table", default="Formatting_Instructions_For_NeurIPS_2026/tables/table_mobility_flow_main.tex")
-    p.add_argument("--selector-table", default="Formatting_Instructions_For_NeurIPS_2026/tables/table_two_stage_selector_sweep.tex")
+    p.add_argument("--mobility-table", default="artifacts/table_inputs/objective_neutral_mobility.csv")
+    p.add_argument("--selector-table", default="artifacts/table_inputs/two_stage_selector_sweep.csv")
     p.add_argument("--output-dir", default="analysis_outputs/hidden_jacobian_routing/figure7_objective_neutral_mobility_selector")
     args = p.parse_args()
 

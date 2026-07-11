@@ -1,0 +1,5 @@
+Model,Layer,AUROC,"\(\dim_{80,s}\)","\(\dim_{90,s}\)","\(\dim_{80,r}\)"
+ResNet50,layer4,0.798,7,9,169.0
+VGG19-BN,block5,0.746,7,10,114.2
+DenseNet,denseblock3,0.721,12,25,170.0
+Inception-v3,mixed6,0.903,18,35,126.0

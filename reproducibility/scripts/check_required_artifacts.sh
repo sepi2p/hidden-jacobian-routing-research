@@ -5,27 +5,21 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
 
 required=(
-  "analysis_outputs/hidden_jacobian_routing/multimodel_road_routing_cifar_c200/summary.csv"
-  "analysis_outputs/hidden_jacobian_routing/matched_jacobian_intervention_controls/summary.csv"
-  "analysis_outputs/hidden_jacobian_routing/two_stage_mobility_margin_sweep/selector_summary.csv"
-  "analysis_outputs/hidden_jacobian_routing/jvp_mobility_multimodel/summary.csv"
-  "analysis_outputs/hidden_jacobian_routing/actual_trajectory_jvp_linearity/summary.csv"
+  artifacts/splits/cifar10_exact_splits.csv
+  artifacts/splits/model_registry.csv
+  artifacts/splits/layer_registry.csv
+  artifacts/splits/attack_registry.csv
+  artifacts/analysis_summaries/ko_exact_run_metrics.csv
+  artifacts/analysis_summaries/ko_exact_summary.csv
+  reproducibility/configs/checkpoint_registry.csv
+  reproducibility/configs/claim_evidence_map.csv
 )
 
-missing=0
 for path in "${required[@]}"; do
-  if [[ -e "$path" ]]; then
-    printf "OK      %s\n" "$path"
-  else
-    printf "MISSING %s\n" "$path"
-    missing=1
-  fi
+  test -s "$path" || { echo "missing required release file: $path" >&2; exit 1; }
 done
 
-if [[ "$missing" -ne 0 ]]; then
-  echo "One or more core summary artifacts are missing."
-  echo "Download the external artifact bundle or rerun the mapped scripts in reproducibility/MANIFEST.md."
-  exit 1
-fi
+count=$(find artifacts/table_inputs -maxdepth 1 -name 'table_*.csv' -type f | wc -l)
+test "$count" -eq 35 || { echo "expected 35 frozen paper tables, found $count" >&2; exit 1; }
 
-echo "All required core summary artifacts are present."
+echo "release layout OK: 35 table inputs, exact comparator summaries, splits, and protocol registries"

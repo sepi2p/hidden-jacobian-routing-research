@@ -394,7 +394,7 @@ def summarize(per_image: pd.DataFrame):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--models", default="bbb_resnet50,bbb_vgg19_bn,bbb_densenet,bbb_inception_v3")
-    p.add_argument("--dataset-root", default="/home/sepi/data/cifar10")
+    p.add_argument("--dataset-root", default="data/cifar10")
     p.add_argument("--output-dir", default="analysis_outputs/hidden_jacobian_routing/multimodel_road_routing_cifar_c200")
     p.add_argument("--max-images", type=int, default=-1)
     p.add_argument("--eps-linf", type=float, default=2.0)

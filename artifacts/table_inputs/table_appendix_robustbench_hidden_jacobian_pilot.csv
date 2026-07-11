@@ -1,0 +1,4 @@
+Model,APGD-CE,APGD-DLR,Cand. flip,FD/JVP cos,"$\rho(m,g)$",JVP AUC
+Wong2020Fast,48.0,43.0,1.0,0.990,0.977,0.493
+Engstrom2019Robustness,46.0,42.0,0.1,0.987,0.972,0.423
+Addepalli2022Efficient\_RN18,36.5,42.0,1.2,0.981,0.977,0.749

@@ -1,0 +1,5 @@
+Model,Layer,dim80$_s$,dim80$_r$,Rand./Succ.,AUROC
+ResNet50,layer4,7,169.0,24.1,0.798
+VGG19-BN,block5,7,114.2,16.3,0.746
+DenseNet,denseblock3,12,170.0,14.2,0.721
+Inception-v3,mixed6,18,126.0,7.0,0.903

@@ -1,0 +1,4 @@
+Model,Square ASR,PGD vs random,Square vs random,Square vs failed
+ResNet50,84.5,0.998,0.996,0.563
+ConvNeXt-Tiny,84.0,1.000,1.000,0.544
+ViT-B/16,90.5,0.992,0.995,0.590
