@@ -20,6 +20,6 @@ The repository intentionally excludes:
 
 The final scientific framing is:
 
-> Successful-trajectory PCA summarizes realizable hidden-Jacobian mobility in checkpoint coordinates; the fitted pullbacks are important under the tested tight budget but bypassable at a larger budget.
+> Successful-trajectory PCA summarizes realizable hidden-Jacobian mobility in checkpoint coordinates; objective progress and initial difficulty account for most of its marginal association with attack success.
 
 The tracked artifact bundle contains only lightweight table-ready summaries, exact clean-start run summaries, split registries, and checksums. Raw trajectories, checkpoints, and dense arrays are regenerated with the mapped scripts and are not committed to Git.

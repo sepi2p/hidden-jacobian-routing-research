@@ -1,14 +1,12 @@
 # Hidden-Jacobian Mobility in Adversarial Trajectories
 
-> **Important:** the pullback-avoidance summaries in releases through `v1.2.2` contain classes 0--4 only because of a class-sorting/truncation bug. They do not validate the manuscript's ten-class functional claim. See [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md).
-
-This repository contains the research code and reproducibility scaffolding for a coordinate-level empirical audit of adversarial trajectories against hidden-Jacobian mobility, initial attack difficulty, finite-step residual motion, and budget-dependent pullback avoidance.
+This repository contains the research code and reproducibility scaffolding for a coordinate-level empirical audit of adversarial trajectories against hidden-Jacobian mobility, initial attack difficulty, and finite-step residual motion. Historical release information is documented in [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md); affected avoidance artifacts are not part of the active evidence bundle.
 
 It intentionally does **not** include manuscript source, PDFs, generated paper figures, checkpoints, or dense raw trajectory arrays. The tracked split registries and table-ready summaries provide a lightweight audit layer; the mapped scripts regenerate the larger outputs.
 
 ## What This Repo Contains
 
-- `experiments/hidden_jacobian_routing/`: experiment and analysis scripts for transport concentration, nested layer selection, difficulty controls, mobility/JVP tests, the norm-native comparator, coordinate stress tests, pullback avoidance, matched interventions, and supporting pilots.
+- `experiments/hidden_jacobian_routing/`: experiment and analysis scripts for transport concentration, nested layer selection, difficulty controls, mobility/JVP tests, the norm-native comparator, coordinate stress tests, and supporting pilots.
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
@@ -21,12 +19,12 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 
 The repository supports a scoped empirical claim:
 
-> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion. The stronger claim about functional reliance on fitted pullbacks is under revalidation and should be treated as provisional.
+> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion; objective progress and initial difficulty account for most of its marginal association with attack success.
 
 ## Access Models
 
 - Mechanism diagnostics: white-box model internals, hidden activations, gradients, and JVPs.
-- Pullback-avoidance and matched interventions: white-box source-model features, JVP/VJP operations, and margins.
+- Mobility and finite-step diagnostics: white-box source-model features, JVP/VJP operations, and margins.
 
 ## Setup
 
@@ -81,17 +79,16 @@ python experiments/hidden_jacobian_routing/analyze_ko_proposal_sign_radius.py \
 
 The queue skips completed `DONE` shards, so interruption does not discard finished model/seed combinations. The grouped-CV script fits standardization and logistic regression inside each image-grouped training fold and predicts held-out image groups only. Its bootstrap intervals are conditional on the fitted OOF models and selected layer; they are not full-pipeline uncertainty intervals.
 
-## Difficulty, Norm-Native, and Avoidance Tests
+## Difficulty and Norm-Native Tests
 
 The current release adds the three experiments used to resolve the strongest alternative explanations:
 
 ```bash
 python experiments/hidden_jacobian_routing/run_success_difficulty_control.py --help
 python experiments/hidden_jacobian_routing/run_linf_induced_jacobian_comparator.py --help
-python experiments/hidden_jacobian_routing/run_mechanism_breaking_attacks.py --help
 ```
 
-The first measures the incremental out-of-fold contribution of transport energy after clean difficulty and first-step progress. The second compares signed Euclidean singular directions with an approximate induced \((\infty,2)\) maximizer. The third removes a fixed five-dimensional transport pullback during margin-PGD and includes a dimension-matched random-subspace control. Frozen aggregate outputs are under `artifacts/analysis_summaries/`.
+The first measures the incremental out-of-fold contribution of transport energy after clean difficulty and first-step progress. The second compares signed Euclidean singular directions with an approximate induced \((\infty,2)\) maximizer. Frozen aggregate outputs are under `artifacts/analysis_summaries/`.
 
 ## Large Files
 

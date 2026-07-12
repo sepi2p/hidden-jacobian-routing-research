@@ -10,7 +10,6 @@
 - Finite-budget diagnostic: PGD-CE20 and controlled APGD-style CE/DLR50 at `epsilon in {1,2}/255`.
 - Difficulty control: image-grouped out-of-fold models using clean margin/loss, gradient norms, class, and first-step progress before adding transport energy.
 - Norm-native comparator: approximate induced `(infinity,2)` maximization with five restarts, paired against signed Euclidean singular directions.
-- Pullback avoidance: margin-PGD20, step `2/255`, three uniform random starts, `n=200`, primary `epsilon=1/255`; ResNet50 `8/255` rerouting check.
 - Bootstrap unit: image ID unless a caption explicitly labels a fitted-basis point estimate.
 
 The exact image rows, model registry, layer registry, and attack registry are tracked in `artifacts/splits/`.
@@ -23,4 +22,4 @@ The exact image rows, model registry, layer registry, and attack registry are tr
 
 ## Access Scope
 
-Mechanism and pullback experiments are white-box. The paper does not claim a practical or state-of-the-art attack.
+Mechanism experiments are white-box. The paper does not claim a practical or state-of-the-art attack.

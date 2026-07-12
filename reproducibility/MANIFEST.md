@@ -20,8 +20,6 @@ This release is locked to the submitted study and contains only its mapped exper
 | Norm-native comparator | `run_linf_induced_jacobian_comparator.py`; `summarize_linf_comparator_paired.py` | paired comparator summary and table input |
 | Finite-budget JVP/residual analysis | `run_finite_budget_jvp_residual.py`; `test_actual_trajectory_jvp_linearization.py` | finite-budget and recorded-step table inputs |
 | Coordinate dependence | `run_function_preserving_coordinate_rescaling.py`; `analyze_decomposition_sensitivity.py` | coordinate-stress table inputs |
-| Matched pullback activity | `run_matched_jacobian_intervention_controls.py` | intervention table inputs |
-| Budget-dependent pullback avoidance | `run_mechanism_breaking_attacks.py`; `summarize_mechanism_breaking_paired.py` | paired outcomes, aggregate summaries, and table inputs |
 | ImageNet supporting pilot | `run_imagenet_supporting_pilot.py` | ImageNet pilot table input |
 | RobustBench local-mobility pilot | `run_robustbench_local_mobility_pilot.py` | RobustBench pilot table input |
 
@@ -30,7 +28,7 @@ All scripts above are under `experiments/hidden_jacobian_routing/`. Exact paper-
 ## Frozen Inputs and Checks
 
 - `artifacts/table_inputs/`: every numeric table currently referenced by the manuscript, stored as lightweight CSV.
-- `artifacts/analysis_summaries/`: run-level and grouped values for the exact K&O comparator, difficulty control, norm-native comparator, pullback avoidance, checkpoint metrics, and associated conditional bootstrap analyses.
+- `artifacts/analysis_summaries/`: run-level and grouped values for the exact K&O comparator, difficulty control, norm-native comparator, checkpoint metrics, and associated conditional bootstrap analyses.
 - `artifacts/splits/`: exact CIFAR split and protocol registries.
 - `reproducibility/configs/checkpoint_registry.csv`: checkpoint paths and SHA256 hashes.
 - `reproducibility/SHA256SUMS`: checksums for all tracked release artifacts and registries.

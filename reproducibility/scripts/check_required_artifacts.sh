@@ -22,8 +22,6 @@ required=(
   artifacts/analysis_summaries/checkpoint_metrics.csv
   artifacts/analysis_summaries/difficulty_control_split_summaries.csv
   artifacts/analysis_summaries/linf_comparator_paired_bootstrap.csv
-  artifacts/analysis_summaries/mechanism_breaking/mechanism_breaking_balanced_eps1__bbb_resnet50__paired.csv
-  artifacts/analysis_summaries/mechanism_breaking/mechanism_breaking_balanced_eps1__bbb_vgg19_bn__paired.csv
   reproducibility/configs/checkpoint_registry.csv
   reproducibility/configs/claim_evidence_map.csv
 )
@@ -33,6 +31,6 @@ for path in "${required[@]}"; do
 done
 
 count=$(find artifacts/table_inputs -maxdepth 1 -name 'table_*.csv' -type f | wc -l)
-test "$count" -eq 32 || { echo "expected 32 frozen paper tables, found $count" >&2; exit 1; }
+test "$count" -eq 28 || { echo "expected 28 frozen paper tables, found $count" >&2; exit 1; }
 
-echo "release layout OK: 32 active table inputs, exact splits, protocol registries, and current conditional/functional summaries"
+echo "release layout OK: 28 active table inputs, exact splits, protocol registries, and current conditional summaries"
