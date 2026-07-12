@@ -171,7 +171,12 @@ def main() -> None:
     final = splits[(splits.model == args.model) & (splits.split_seed == args.split_seed) & (splits.split == "final_test")]
     final = final.sort_values(["label", "class_ord"])
     if args.max_images > 0:
-        final = final.head(args.max_images)
+        if args.max_images % 10 != 0:
+            raise ValueError("--max-images must be divisible by 10 for class-balanced selection")
+        final = final.groupby("label", group_keys=False).head(args.max_images // 10)
+    class_counts = final.label.value_counts().sort_index()
+    if list(class_counts.index.astype(int)) != list(range(10)) or class_counts.nunique() != 1:
+        raise RuntimeError(f"class-balanced final-test selection failed: {class_counts.to_dict()}")
     nested = Path(args.nested_root) / args.model / f"split_seed_{args.split_seed}"
     selected = pd.read_csv(nested / "nested_layer_selection_summary.csv")
     layer = str(selected[selected.layer_rule == "nested_selected_nonlogit"].reported_layer.iloc[0])
@@ -257,7 +262,19 @@ def main() -> None:
     )
     best.to_csv(out / "mechanism_breaking_best_per_image.csv", index=False)
     summary.to_csv(out / "mechanism_breaking_summary.csv", index=False)
-    done.write_text(json.dumps({"status": "complete", "model": args.model, "layer": layer, "images": len(completed)}, indent=2), encoding="utf-8")
+    done.write_text(
+        json.dumps(
+            {
+                "status": "complete",
+                "model": args.model,
+                "layer": layer,
+                "images": len(completed),
+                "class_counts": {str(key): int(value) for key, value in class_counts.items()},
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     print(summary.to_string(index=False), flush=True)
 
 

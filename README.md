@@ -1,5 +1,7 @@
 # Hidden-Jacobian Mobility in Adversarial Trajectories
 
+> **Important:** the pullback-avoidance summaries in releases through `v1.2.2` contain classes 0--4 only because of a class-sorting/truncation bug. They do not validate the manuscript's ten-class functional claim. See [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md).
+
 This repository contains the research code and reproducibility scaffolding for a coordinate-level empirical audit of adversarial trajectories against hidden-Jacobian mobility, initial attack difficulty, finite-step residual motion, and budget-dependent pullback avoidance.
 
 It intentionally does **not** include manuscript source, PDFs, generated paper figures, checkpoints, or dense raw trajectory arrays. The tracked split registries and table-ready summaries provide a lightweight audit layer; the mapped scripts regenerate the larger outputs.
@@ -19,7 +21,7 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 
 The repository supports a scoped empirical claim:
 
-> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion. The fitted input pullbacks are functionally important to the tested tight-budget attacks, but are bypassable at a larger budget.
+> Successful-trajectory PCA is a checkpoint-coordinate summary that is largely explained by realizable hidden-Jacobian motion. The stronger claim about functional reliance on fitted pullbacks is under revalidation and should be treated as provisional.
 
 ## Access Models
 
