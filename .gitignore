@@ -22,6 +22,7 @@ env/
 logs/
 results/
 analysis_outputs/
+data/
 paper_artifacts/
 figures/
 viz_*/
@@ -60,4 +61,3 @@ external_repos/
 *.blg
 *.out
 *.toc
-

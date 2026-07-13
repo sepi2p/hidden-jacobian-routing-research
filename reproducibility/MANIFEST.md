@@ -22,8 +22,9 @@ This release is locked to the submitted study and contains only its mapped exper
 | Coordinate dependence | `run_function_preserving_coordinate_rescaling.py`; `analyze_decomposition_sensitivity.py` | coordinate-stress table inputs |
 | ImageNet supporting pilot | `run_imagenet_supporting_pilot.py` | ImageNet pilot table input |
 | RobustBench local-mobility pilot | `run_robustbench_local_mobility_pilot.py` | RobustBench pilot table input |
+| GTSRB application validation | `train_gtsrb_models.py`; `run_gtsrb_compact_audit.py`; `aggregate_gtsrb_replications.py` | `artifacts/analysis_summaries/gtsrb_*.csv` |
 
-All scripts above are under `experiments/hidden_jacobian_routing/`. Exact paper-item mappings are in `reproducibility/configs/claim_evidence_map.csv`.
+The CIFAR/ImageNet/RobustBench scripts are under `experiments/hidden_jacobian_routing/`; the traffic-sign application is under `experiments/eaai_gtsrb/`. Exact paper-item mappings are in `reproducibility/configs/claim_evidence_map.csv`.
 
 ## Frozen Inputs and Checks
 

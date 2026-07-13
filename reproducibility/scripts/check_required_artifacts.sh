@@ -22,6 +22,9 @@ required=(
   artifacts/analysis_summaries/checkpoint_metrics.csv
   artifacts/analysis_summaries/difficulty_control_split_summaries.csv
   artifacts/analysis_summaries/linf_comparator_paired_bootstrap.csv
+  artifacts/analysis_summaries/gtsrb_architecture_summary.csv
+  artifacts/analysis_summaries/gtsrb_seed_level_summary.csv
+  artifacts/analysis_summaries/gtsrb_coordinate_stress_all_seeds.csv
   reproducibility/configs/checkpoint_registry.csv
   reproducibility/configs/claim_evidence_map.csv
 )
@@ -33,4 +36,4 @@ done
 count=$(find artifacts/table_inputs -maxdepth 1 -name 'table_*.csv' -type f | wc -l)
 test "$count" -eq 28 || { echo "expected 28 frozen paper tables, found $count" >&2; exit 1; }
 
-echo "release layout OK: 28 active table inputs, exact splits, protocol registries, and current conditional summaries"
+echo "release layout OK: 28 active table inputs, exact splits, GTSRB aggregates, protocol registries, and current conditional summaries"

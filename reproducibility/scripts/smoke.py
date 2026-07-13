@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
 
 def main() -> None:
     importlib.import_module("experiments.hidden_jacobian_routing.common")
+    importlib.import_module("experiments.eaai_gtsrb.gtsrb_common")
     table_inputs = sorted((ROOT / "artifacts/table_inputs").glob("table_*.csv"))
     if not table_inputs:
         raise RuntimeError("frozen table inputs are missing")
@@ -35,6 +36,9 @@ def main() -> None:
         raise RuntimeError("unmapped frozen tables: " + ", ".join(missing_mappings))
     required = [
         ROOT / "artifacts/splits/cifar10_exact_splits.csv",
+        ROOT / "artifacts/analysis_summaries/gtsrb_architecture_summary.csv",
+        ROOT / "artifacts/analysis_summaries/gtsrb_seed_level_summary.csv",
+        ROOT / "artifacts/analysis_summaries/gtsrb_coordinate_stress_all_seeds.csv",
         ROOT / "reproducibility/configs/checkpoint_registry.csv",
         ROOT / "reproducibility/configs/claim_evidence_map.csv",
     ]

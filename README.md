@@ -7,6 +7,7 @@ It intentionally does **not** include manuscript source, PDFs, generated paper f
 ## What This Repo Contains
 
 - `experiments/hidden_jacobian_routing/`: experiment and analysis scripts for transport concentration, nested layer selection, difficulty controls, mobility/JVP tests, the norm-native comparator, coordinate stress tests, and supporting pilots.
+- `experiments/eaai_gtsrb/`: resumable GTSRB training, weak-trajectory audit, finite-step JVP test, coordinate stress test, and three-run aggregation.
 - `attacks/`: the Square Attack probability schedule used by the paper scripts.
 - `surro_models/`: CIFAR-10 model definitions for the evaluated BlackboxBench architectures and the ResNet18 seed study.
 - `utils/`: a minimal CIFAR model loader for the evaluated models.
@@ -89,6 +90,31 @@ python experiments/hidden_jacobian_routing/run_linf_induced_jacobian_comparator.
 ```
 
 The first measures the incremental out-of-fold contribution of transport energy after clean difficulty and first-step progress. The second compares signed Euclidean singular directions with an approximate induced \((\infty,2)\) maximizer. Frozen aggregate outputs are under `artifacts/analysis_summaries/`.
+
+## GTSRB Engineering Application
+
+The application-domain pipeline trains ImageNet-initialized ResNet-18 and
+ConvNeXt-Tiny traffic-sign classifiers, selects a weak trajectory setting on a
+validation partition, and evaluates held-out trajectory separation, incremental
+prediction beyond initial difficulty/progress, exact JVP agreement, stabilized
+finite-step residuals, and function-preserving coordinate stress. The launchers
+are resumable at model and audit boundaries:
+
+```bash
+PYTHON=python3 bash experiments/eaai_gtsrb/run_gtsrb_pipeline.sh
+PYTHON=python3 bash experiments/eaai_gtsrb/run_gtsrb_audit_after_training.sh
+PYTHON=python3 bash experiments/eaai_gtsrb/run_gtsrb_replications.sh
+python experiments/eaai_gtsrb/aggregate_gtsrb_replications.py \
+  --base-dir analysis_outputs/eaai_gtsrb \
+  --output-dir analysis_outputs/eaai_gtsrb/aggregate \
+  --figure-dir generated/gtsrb/figures \
+  --table-dir generated/gtsrb/tables
+```
+
+GTSRB is downloaded through `torchvision` into `data/gtsrb`. Frozen lightweight
+three-run summaries are tracked under `artifacts/analysis_summaries/gtsrb_*.csv`;
+downloaded data, checkpoints, trajectory arrays, and generated figures remain
+outside Git.
 
 ## Large Files
 

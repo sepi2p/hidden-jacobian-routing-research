@@ -8,6 +8,7 @@ The repository includes:
 - helper scripts imported by those mapped experiments;
 - the Square Attack probability schedule used by the query-search experiments;
 - CIFAR-10 model definitions for the architectures evaluated in the paper;
+- the standalone GTSRB application pipeline and its lightweight three-run aggregate summaries;
 - lightweight reproducibility manifests, exact aggregate summaries, and environment files.
 
 The repository intentionally excludes:
@@ -22,4 +23,4 @@ The final scientific framing is:
 
 > Successful-trajectory PCA summarizes realizable hidden-Jacobian mobility in checkpoint coordinates; objective progress and initial difficulty account for most of its marginal association with attack success.
 
-The tracked artifact bundle contains only lightweight table-ready summaries, exact clean-start run summaries, split registries, and checksums. Raw trajectories, checkpoints, and dense arrays are regenerated with the mapped scripts and are not committed to Git.
+The tracked artifact bundle contains only lightweight table-ready summaries, exact clean-start run summaries, GTSRB aggregate summaries, split registries, and checksums. Raw trajectories, downloaded datasets, checkpoints, and dense arrays are regenerated with the mapped scripts and are not committed to Git.

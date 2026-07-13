@@ -33,3 +33,6 @@ tab:appendix-cross-architecture-summary,architecture summary,run_exact_nested_la
 tab:appendix-mobility-flow-main,objective-neutral summary,analyze_cifar_objective_neutral_mobility_flow.py,artifacts/table_inputs/table_mobility_flow_main.csv
 tab:appendix-multimodel-jvp-mechanism-full,full local Jacobian values,test_mobility_vs_jacobian_gain.py,artifacts/table_inputs/table_multimodel_jvp_mechanism.csv
 tab:appendix-two-stage-selector,candidate selection diagnostic,test_mobility_margin_two_stage_selection.py,artifacts/table_inputs/table_two_stage_selector_sweep.csv
+sec:gtsrb-application,traffic-sign application validation,"train_gtsrb_models.py; run_gtsrb_compact_audit.py; aggregate_gtsrb_replications.py",artifacts/analysis_summaries/gtsrb_architecture_summary.csv
+tab:appendix-gtsrb-seeds,GTSRB run-level audit,aggregate_gtsrb_replications.py,artifacts/analysis_summaries/gtsrb_seed_level_summary.csv
+tab:appendix-gtsrb-coordinate,GTSRB function-preserving coordinate stress,aggregate_gtsrb_replications.py,artifacts/analysis_summaries/gtsrb_coordinate_stress_all_seeds.csv
